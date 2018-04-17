@@ -39,7 +39,7 @@ export class OffersMadePage {
         for(let request in this.requests){
           let val = this.requests[request];
           console.log("************ ListingId: " + val.listingId + "****************");
-          this.listingProvider.retrieveListingById(val.listingId).subscribe(
+          this.listingProvider.getListingByListingId(val.listingId).subscribe(
             response => {
               val.listingTitle = response.listing.listingTitle;
               console.log("************ Successfully set Listing Title************");

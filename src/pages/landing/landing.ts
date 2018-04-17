@@ -30,7 +30,8 @@ export class LandingPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
   this.categories = ['Party','Electronics','Sports'];
   this.categories2 = ['Vehicles','Others'];
-  this.searchControl = new FormControl();
+	this.searchControl = new FormControl();
+	console.log(sessionStorage.getItem("username"));
   }
 
   ionViewDidLoad() {

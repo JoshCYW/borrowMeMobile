@@ -1,3 +1,5 @@
+import { Customer } from "./customer";
+
 export class Listing {
 	category: string;
 	costPerDay: number;
@@ -8,6 +10,7 @@ export class Listing {
 	listingId: number;
 	listingTitle: string;
 	requestList : any[];
+	customer : Customer;
 }
 
 //placeholder

@@ -11,9 +11,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
 import { ItemPage } from '../pages/item/item';
 import { SearchPage } from '../pages/search/search';
-import { SearchPipe } from '../pipes/search/search';
-import { SortPipe } from '../pipes/sort/sort';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ListingProvider } from '../providers/listing/listing';
@@ -36,6 +33,7 @@ import { OffersMadePage } from '../pages/offers-made/offers-made';
 import { OffersReceivedPage } from '../pages/offers-received/offers-received';
 import { ViewListingDetailPage } from '../pages/view-listing-detail/view-listing-detail';
 import { CreateListingPage } from '../pages/create-listing/create-listing';
+import { FrontPage } from '../pages/front/front';
 
 @NgModule({
   declarations: [
@@ -59,12 +57,11 @@ import { CreateListingPage } from '../pages/create-listing/create-listing';
     ItemPage,
     SearchPage,
     TabsPage,
-    SearchPipe,
-    SortPipe,
     HowToBorrowPage,
     RequestFormPage,
     ViewRequestDetailPage,
-    EditListingPage
+    EditListingPage,
+    FrontPage
   ],
   imports: [
     BrowserModule,
@@ -93,12 +90,11 @@ import { CreateListingPage } from '../pages/create-listing/create-listing';
     ItemPage,
     SearchPage,
     TabsPage,
-    SearchPipe,
-    SortPipe,
     HowToBorrowPage,
     RequestFormPage,
     ViewRequestDetailPage,
-    EditListingPage
+    EditListingPage,
+    FrontPage
   ],
   providers: [
     StatusBar,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { ListingProvider } from '../../providers/listing/listing';
-import { Listing } from '../../entities/listing';
+import { Listing } from '../../entities/Listing';
 import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
 
 /**
@@ -40,7 +40,7 @@ export class EditListingPage {
   update(updateListingForm) {
     if(updateListingForm.valid){
       console.log(this.listingToUpdate.listingId);
-      this.listingProvider.updateListing(this.listingToUpdate, sessionStorage.getItem("customerId")).subscribe(
+      this.listingProvider.updateListing(this.listingToUpdate).subscribe(
         response => {
           console.log(this.listingToUpdate);
           console.log("******Successfully executed update*********");

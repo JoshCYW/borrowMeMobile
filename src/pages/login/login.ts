@@ -72,6 +72,7 @@ export class LoginPage
             sessionStorage.setItem("firstName", response.customer.firstName);
             sessionStorage.setItem("lastName", response.customer.lastName);
             sessionStorage.setItem("username", response.customer.username);
+            console.log(sessionStorage.getItem("username"));
             sessionStorage.setItem("password", response.customer.password);
             sessionStorage.setItem("identificationNo", response.customer.identificationNo);
             sessionStorage.setItem("email", response.customer.email);

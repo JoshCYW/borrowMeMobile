@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
-import { ViewAllCustomersPage } from '../view-all-customers/view-all-customers';
 import { ProfileUpdatePage } from '../profile-update/profile-update';
 import * as $ from "jquery";
 
@@ -46,9 +45,6 @@ export class FrontPage {
   }
   doSignup(){
     this.navCtrl.push(SignupPage);
-  }
-  viewAllCustomers(){
-    this.navCtrl.push(ViewAllCustomersPage);
   }
   updateProfile(){
     this.navCtrl.push(ProfileUpdatePage);

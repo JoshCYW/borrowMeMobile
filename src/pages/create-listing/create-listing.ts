@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { Listing } from '../../entities/listing';
+import { Listing } from '../../entities/Listing';
 import { ListingProvider } from '../../providers/listing/listing';
 import { NgForm } from '@angular/forms';
 import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
@@ -64,7 +64,7 @@ export class CreateListingPage {
 		this.errorMessage = null;
 		console.log(this.newListing.customer);
 		if (createProductForm.valid) {
-			this.listingProvider.createNewListing(this.newListing).subscribe(
+			this.listingProvider.createListing(this.newListing).subscribe(
 				response => {
 					let alert = this.alertCtrl.create({
 						title: 'Item listed Successfully',
