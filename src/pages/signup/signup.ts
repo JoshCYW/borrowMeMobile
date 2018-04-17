@@ -48,18 +48,18 @@ export class SignupPage {
       this.customerProvider.signUp(this.newCustomer).subscribe(
         response => {
           console.log("hello");
-          if (response.customer != null) {
-            this.newCustomer = response.customer;
+          if (response.customerEntity != null) {
+            this.newCustomer = response.customerEntity;
             console.log(this.newCustomer);
             //complete log in and send to profile page for now
-            sessionStorage.setItem("firstName", response.customer.firstName);
-            sessionStorage.setItem("lastName", response.customer.lastName);
-            sessionStorage.setItem("username", response.customer.username);
-            sessionStorage.setItem("password", response.customer.password);
-            sessionStorage.setItem("identificationNo", response.customer.identificationNo);
-            sessionStorage.setItem("email", response.customer.email);
-            sessionStorage.setItem("contactNo", response.customer.contactNo);
-            sessionStorage.setItem("customerId", response.customer.customerId);
+            sessionStorage.setItem("firstName", response.customerEntity.firstName);
+            sessionStorage.setItem("lastName", response.customerEntity.lastName);
+            sessionStorage.setItem("username", response.customerEntity.username);
+            sessionStorage.setItem("password", response.customerEntity.password);
+            sessionStorage.setItem("identificationNo", response.customerEntity.identificationNo);
+            sessionStorage.setItem("email", response.customerEntity.email);
+            sessionStorage.setItem("contactNo", response.customerEntity.contactNo);
+            sessionStorage.setItem("customerId", response.customerEntity.customerId);
             sessionStorage.setItem("isLogin", "true");
             //push to new page
             this.navCtrl.push(TabsPage);

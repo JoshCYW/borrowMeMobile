@@ -31,16 +31,26 @@ export class EditListingPage {
     public alertCtrl: AlertController) {
       this.listingToUpdate = navParams.get('listingToView');
       this.listingToViewId = navParams.get('listingToViewId');
+      console.log(this.listingToViewId);
+      this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
+        response => {
+          this.listingToUpdate = response.listing;
+        },
+        error => {
+          this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+        }
+      )
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditListingPage');
+
   }
 
   update(updateListingForm) {
     if(updateListingForm.valid){
       console.log(this.listingToUpdate.listingId);
-      this.listingProvider.updateListing(this.listingToUpdate).subscribe(
+      this.listingProvider.updateListing(this.listingToUpdate, sessionStorage.getItem("customerId")).subscribe(
         response => {
           console.log(this.listingToUpdate);
           console.log("******Successfully executed update*********");
@@ -54,7 +64,7 @@ export class EditListingPage {
           this.navCtrl.setRoot(ItemPage, {"listingToViewId": this.listingToViewId});
         },
         error => {
-
+          this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
         }
       )
     }

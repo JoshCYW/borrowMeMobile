@@ -96,7 +96,7 @@ export class ListingProvider {
 		);
 	}
 
-	updateListing(ListingToUpdate: Listing): Observable<any> {
+	updateListing(ListingToUpdate: Listing, customerId: string): Observable<any> {
 		let path: string = '';
 		
 		if(this.platform.is('core') || this.platform.is('mobileweb')) {
@@ -108,10 +108,10 @@ export class ListingProvider {
 		
 		//have to link with user account
 		let updateBookReq = {
-			"ListingEntity": ListingToUpdate
+			"listing": ListingToUpdate
 		};
 		
-		return this.httpClient.post<any>(path, updateBookReq, httpOptions).pipe
+		return this.httpClient.post<any>(path + "/" + customerId, updateBookReq, httpOptions).pipe
 		(
 			catchError(this.handleError)
 		);

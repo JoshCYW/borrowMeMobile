@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ListingProvider } from '../../providers/listing/listing';
 import { Listing } from '../../entities/listing';
 import { EditListingPage } from '../edit-listing/edit-listing';
+import { RequestFormPage } from '../request-form/request-form';
 
 
 /**
@@ -113,6 +114,6 @@ export class ItemPage {
 	}
 
 	makeRequest() {
-		this.navCtrl.push(ItemPage, { 'listingToViewId': this.listingToViewId });
+		this.navCtrl.push(RequestFormPage, { 'listingToViewId': this.listingToViewId });
 	}
 }
