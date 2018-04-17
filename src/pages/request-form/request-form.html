@@ -6,13 +6,49 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>request-form</ion-title>
+  <ion-navbar color="theme">
+    <ion-title>requestForm</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <form #requestForm="ngForm" (ngSubmit)="makeRequest(requestForm)">
+    <ion-item>
+      <ion-label color="">Start date</ion-label>
+      <ion-datetime name="startDate" id="startDate" displayFormat="DD MMMM YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="newRequest.startDate"
+        #startDate="ngModel"></ion-datetime>
+    </ion-item>
+    <ion-item>  
+      <ion-label color="">End date</ion-label>
+      <ion-datetime name="endDate" id="endDate" displayFormat="DD MMMM YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="newRequest.endDate"
+        #endDate="ngModel"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="" floating>Message (Special Request)</ion-label>
+      <ion-input name="message" id="message" [(ngModel)]="newRequest.message" #message="ngModel" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <div class="button">
+        <button class="submit-button primary" type="submit" block>
+          Submit Request!
+        </button>
+      </div>
+    </ion-item> 
+    <ion-item>
+      <ion-input type="text" name="payment" id="payment" [(ngModel)]="newRequest.payment" #payment="ngModel" hidden></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-input name="acknowledged" id="acknowledged" [(ngModel)]="newRequestacknowledged" #acknowledged="ngModel" hidden></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-input name="accepted" id="accepted" [(ngModel)]="newRequest.accepted" #accepted="ngModel" hidden></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-input name="overdue" id="overdue" [(ngModel)]="newRequest.overdue" #overdue="ngModel" hidden></ion-input>
+    </ion-item>
+  </form>
 
 </ion-content>

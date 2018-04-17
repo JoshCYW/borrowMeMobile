@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>offers-received</ion-title>
+  <ion-navbar color="theme">
+    <ion-title>Offers Received</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,11 @@
 
 <ion-content padding>
 
+  <ion-grid class="grid">
+    <ion-row class="row" ion-item *ngFor="let request of requests" (click)="viewRequestDetails($event, request)">
+      <b>Listing title: {{request.listingTitle}}</b>
+      <p>Request Id: {{request.requestId}}</p> 
+    </ion-row>
+  </ion-grid>
+      
 </ion-content>

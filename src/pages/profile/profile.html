@@ -1,18 +1,53 @@
 <!--
   Generated template for the ProfilePage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>profile</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+  <!-- See http://ionicframework.com/docs/components/#navigation for more info on -->
+  Ionic pages and navigation. -->
+  <ion-header>
+    <ion-navbar color="theme">
+      <ion-title>Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <div class="profile">
+      <div class="profile-img">
+        <img style="border-radius: 50%;" src="../../assets/imgs/profile.jpg" alt="aa">
+      </div>
+      <!-- <div class="profile-information"> -->
+      <ion-list *ngIf="customerProfile != null">
+        <ion-item no-lines>
+          <ion-label fixed>{{customerProfile.firstName}} {{customerProfile.lastName}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="options">
+      <div class="edit-profile">
+        <button (click)="updateCustomer()" class="edit-profile-btn">Edit Profile</button>
+      </div>
+      <div class="offers-made">
+        <button (click)="offersMade()" class="offers-made-btn">
+          <ion-icon name="cart"></ion-icon> Offers Made</button>
+      </div>
+      <div class="setting">
+        <button (click)="settings()" class="setting-btn">
+          <ion-icon name="settings"></ion-icon> Settings</button>
+      </div>
+      <div class="offers-received">
+          <button (click)="offersReceived()" class="offers-received-btn">
+            <ion-icon name="cart"></ion-icon> Offers Received</button>
+        </div>
+    </div>
+    <div class="personal-listings">
+      <div class="searchbar">
+        <ion-input placeholder="search personal listings"></ion-input>
+      </div>
+      <ion-list>
+        <button ion-item *ngFor="let listing of listings" (click)="viewListingDetails($event, listing)">
+          <ion-icon name='arrow-forward'></ion-icon>
+          <b>{{listing.listingTitle}}</b>
+          <p>{{listing.listingDescription}}</p>
+          <p>{{listing.costPerDay}}</p>
+        </button>
+      </ion-list>
+    </div>
+  </ion-content>

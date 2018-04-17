@@ -6,13 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>view-listing-detail</ion-title>
+  <ion-navbar color="theme">
+    <div *ngIf="listingToView != null">
+      <ion-title>{{listingToView.listingTitle}}</ion-title>
+    </div>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div *ngIf="listingToView != null">
+    <p>Item description: {{listingToView.listingDescription}}</p>
+    <p>Cost/day: {{listingToView.costPerDay}}</p>
+  </div>
+  <div *ngIf="status == true">
+    <button (click)="goToForm()" ion-button block>
+      Make Request
+    </button>
+  </div>
+  <div *ngIf="status == false">
+    <button (click)="editListing()" ion-button block>
+      Edit Listing
+    </button>
+  </div>
 </ion-content>
