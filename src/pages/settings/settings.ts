@@ -6,7 +6,7 @@ import { HowToBorrowPage } from '../how-to-borrow/how-to-borrow';
 import { GettingStartedGuidePage } from '../getting-started-guide/getting-started-guide';
 import { SafetyTipsPage } from '../safety-tips/safety-tips';
 import { AboutPageModule } from '../about/about.module';
-import { LandingPage } from '../landing/landing';
+import { FrontPage } from '../front/front';
 
 /**
  * Generated class for the SettingsPage page.
@@ -54,7 +54,7 @@ export class SettingsPage {
   }
 
   signout() {
-    this.navCtrl.setRoot(LandingPage);
+    this.navCtrl.setRoot(FrontPage);
     sessionStorage.removeItem("customerId");
     sessionStorage.removeItem("firstName");
     sessionStorage.removeItem("lastName");

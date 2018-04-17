@@ -92,6 +92,10 @@ export class ItemPage {
 		});
 	}
 
+	viewItem(listingId) {
+		this.navCtrl.push(ItemPage, {'listingToViewId': listingId});	
+		}
+
 	popView() {
 		this.navCtrl.pop();
 	}
