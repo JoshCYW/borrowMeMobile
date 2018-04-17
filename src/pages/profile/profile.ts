@@ -16,6 +16,7 @@ import { SettingsPage } from '../settings/settings';
 import { OffersMadePage } from '../offers-made/offers-made';
 import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
 import { OffersReceivedPage } from '../offers-received/offers-received';
+import { ItemPage } from '../item/item';
 
 /**
  * Generated class for the ProfilePage page.
@@ -52,7 +53,7 @@ export class ProfilePage {
     if (sessionStorage.getItem("username") !== null) {
 
       //retrieve all listings
-      this.listingProvider.getListingsById(sessionStorage.getItem("customerId")).subscribe(
+      this.listingProvider.getListingsByCustomerId(sessionStorage.getItem("customerId")).subscribe(
         response => {
           this.listings = response.listings;
         },
@@ -80,7 +81,7 @@ export class ProfilePage {
     if (sessionStorage.getItem("username") !== null) {
 
       //retrieve all listings
-      this.listingProvider.getListingsById(sessionStorage.getItem("customerId")).subscribe(
+      this.listingProvider.getListingsByCustomerId(sessionStorage.getItem("customerId")).subscribe(
         response => {
           this.listings = response.listings;
         },
@@ -105,7 +106,7 @@ export class ProfilePage {
 
   viewListingDetails(event, listing) {
     console.log("button pressed");
-    this.navCtrl.push(ViewListingDetailPage, {'listingToView': listing.listingId});
+    this.navCtrl.push(ItemPage, {'listingToViewId': listing.listingId});	
   }
 
   updateCustomer() {

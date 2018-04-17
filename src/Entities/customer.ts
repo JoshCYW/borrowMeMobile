@@ -1,10 +1,12 @@
 export class Customer {
-  customerId: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  identificationNo: string;
-  contactNo: string;
+	contactNo: String;
+	customerId: number;
+	customerType: string;
+	email: string;
+	firstname: string;
+	identificationNo: string;
+	lastName: string;
+	password: string;
+	profileImage: string;
+	username: string;
 }
