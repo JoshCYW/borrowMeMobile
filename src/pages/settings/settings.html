@@ -4,15 +4,108 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>settings</ion-title>
+<ion-header class="header-image">
+  <ion-navbar color="theme">
+    <ion-title>Settings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-list>
+    <ion-item (click)="editProfile()">
+      <label>Edit Profile</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
 
-<ion-content padding>
+    <ion-item (click)="changePassword()">
+      <label>Change Password</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
 
+  </ion-list>
+
+  <ion-list>
+
+    <ion-item (click)="howToBorrow()">
+      <label>How to List and Borrow</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="gettingStartedGuide()">
+      <label>Getting Started Guide</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="safetyTips()">
+      <label>Safety Tips</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="aboutBorrowMe()">
+      <label>About BorrowMe</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-item (click)="signout()">
+      Log out
+    </ion-item>
+  </ion-list>
+</ion-content><!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="header-image">
+  <ion-navbar color="theme">
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="editProfile()">
+      <label>Edit Profile</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="changePassword()">
+      <label>Change Password</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+
+    <ion-item (click)="howToBorrow()">
+      <label>How to List and Borrow</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="gettingStartedGuide()">
+      <label>Getting Started Guide</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="safetyTips()">
+      <label>Safety Tips</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="aboutBorrowMe()">
+      <label>About BorrowMe</label>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-item (click)="signout()">
+      Log out
+    </ion-item>
+  </ion-list>
 </ion-content>

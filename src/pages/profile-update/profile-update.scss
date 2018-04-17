@@ -1,3 +1,47 @@
 page-profile-update {
+    .toolbar-background {
+        // background-image: url('../../assets/imgs/wallpaper4.jpg')!important;
+        // background-size: cover;
+        // background-position: center center;
+        // background-repeat: no-repeat;
+    }
 
+    .content{
+        padding-top: 10px;
+        
+    }
+
+    ion-label, ion-input{
+        font-size: 13.5px;
+    }
+
+    ion-label{
+        font-weight: 450;
+    }
+
+    .options{
+        border-style: solid;
+        border-width: 1px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: lightgrey;
+    }
+
+    .content{
+        background-color: #e6e6e6;
+    }
+
+    .btn{
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        color:white;
+        background-color: rgb(96, 156, 5);
+        font-family: roboto;
+    }
+    .btn:hover{
+        background-color: green;
+        transition: 0.5s;
+    }
 }

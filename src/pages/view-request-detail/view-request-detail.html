@@ -6,13 +6,27 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>view-request-detail</ion-title>
+  <ion-navbar color="theme">
+    <div *ngIf="request != null">
+      <ion-title>Request: {{request.listingTitle}}</ion-title>
+    </div>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-
+  <div *ngIf="request != null">
+    <ion-list>
+      <ion-item>
+        <p>Listing Description: {{request.listingTitle}}</p>
+        <p>Acknowledged status: {{request.acknowledged}}</p>
+        <p>Accepted status: {{request.accepted}}</p>
+        <p>Short message: {{request.message}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- display accept button only if status is true -->
+  <div *ngIf="status == false && request.accepted == false">
+    <button (click) = "acceptRequest()" ion-button block>Accept Request</button>
+  </div>
 </ion-content>

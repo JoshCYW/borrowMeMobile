@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>offers-made</ion-title>
+  <ion-navbar color="theme">
+    <ion-title>Requests Made</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let request of requests" (click)="viewRequestDetails($event, request)">
+      <b>Listing title: {{request.listingTitle}}</b>
+      <p>Request Id: {{request.requestId}}</p>  
+    </button>
+  </ion-list>
 </ion-content>
