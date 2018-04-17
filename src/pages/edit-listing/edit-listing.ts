@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { RequestProvider } from '../../providers/request/request';
 import { ListingProvider } from '../../providers/listing/listing';
 import { Listing } from '../../entities/Listing';
-import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
+import { ItemPage } from '../item/item';
 
 /**
  * Generated class for the EditListingPage page.
@@ -20,7 +20,7 @@ import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detai
 export class EditListingPage {
 
   errorMessage: string;
-  listingToViewId: string;
+  listingToViewId: number;
 
   listingToUpdate: Listing;
 
@@ -51,7 +51,7 @@ export class EditListingPage {
             buttons: ['Dismiss']
           });
           alert.present();
-          this.navCtrl.setRoot(ViewListingDetailPage, {"listingToViewId": this.listingToViewId});
+          this.navCtrl.setRoot(ItemPage, {"listingToViewId": this.listingToViewId});
         },
         error => {
 

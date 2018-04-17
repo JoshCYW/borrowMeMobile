@@ -10,7 +10,7 @@ export class Request {
     accepted: boolean;
     overdue: boolean;
     message: string;
-    listingId: string;
+    listingId: number;
     listingTitle: string;
   }
   

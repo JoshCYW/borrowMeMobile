@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { LandingPage } from '../landing/landing';
 import { CreateListingPage } from '../create-listing/create-listing';
+import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the TabsPage page.
@@ -19,8 +20,8 @@ import { CreateListingPage } from '../create-listing/create-listing';
 export class TabsPage {
   profilePage = ProfilePage;
   createListing = CreateListingPage;
-  browsePage = LandingPage;
-  tab3Root;
+  browsePage = LandingPage; //should fix it next time
+  searchPage = SearchPage;
 
   constructor(){
 

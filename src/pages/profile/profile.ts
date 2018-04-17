@@ -9,12 +9,11 @@ import { ListingProvider } from '../../providers/listing/listing';
 
 import { ProfileUpdatePage } from '../profile-update/profile-update';
 
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 import { Listing } from '../../entities/listing';
 
 import { SettingsPage } from '../settings/settings';
 import { OffersMadePage } from '../offers-made/offers-made';
-import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
 import { OffersReceivedPage } from '../offers-received/offers-received';
 import { ItemPage } from '../item/item';
 
@@ -36,7 +35,7 @@ export class ProfilePage {
   errorMessage: string;
   infoMessage: string;
 
-  customerProfile: Customer;
+  customerProfile: CustomerEntity;
   listings: Listing[];
 
   constructor(public navCtrl: NavController,
@@ -64,8 +63,8 @@ export class ProfilePage {
 
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerProfile = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerProfile = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
           this.infoMessage = "Product loaded successfully";
         },
         error => {
@@ -92,8 +91,8 @@ export class ProfilePage {
 
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerProfile = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerProfile = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
           this.infoMessage = "Product loaded successfully";
         },
         error => {

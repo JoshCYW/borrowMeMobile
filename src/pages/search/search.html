@@ -6,43 +6,29 @@
 -->
 <ion-header>
 
- <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>{{ category.name }}</ion-title>
-	<ion-searchbar>[(ngModel)]="searchTerm"</ion-searchbar>
-  </ion-navbar>
-
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+  <ion-list *ngIf="searchTerm != ''">
+      <ion-item *ngFor="let searchItem of searchItems">
+          {{searchItem.listingTitle}}
+      </ion-item>
+	</ion-list>
+	
+	</ion-header>
 
 <ion-content padding>
 
-  <ion-list no-margin class="list-full-border list-products" [ngClass]="grid">
-    <ion-item class="product" *ngFor="let item of items" (click)="viewItem()">
-      <ion-thumbnail item-left>
-        <img src="{{ item.thumb }}">
-      </ion-thumbnail>
-      <!--item's information-->
-      <div>
-        <div text-wrap>{{ item.name }}</div>
-        <div>
-          <span ion-text color="danger" *ngIf="item.sale_price">{{ item.sale_price | currency:'USD':true }}</span>
-          <span ion-text color="danger" *ngIf="!item.sale_price">{{ item.price | currency:'USD':true }}</span>
-        </div>
-        <div class="origin-price text-sm">
-          <span *ngIf="item.sale_price" class="text-decoration">{{ item.price | currency:'USD':true }}</span>
-          <span *ngIf="item.sale_price" class="discount-rate" ion-text color="danger">{{ discountPercent(item.price, item.sale_price) }}%</span>
-        </div>
-        <div class="bottom-info text-sm">
-          <span ion-text color="gray" class="pull-left" *ngIf="item.shipping == 0">Free shipping</span>
-          <span ion-text color="gray" class="pull-left" *ngIf="item.shipping != 0">Shipping: {{ item.shipping | currency:'USD':true}}</span>
-          <span ion-text color="gray" class="pull-right">
-            {{ item.num_orders }} Orders
-          </span>
-          <div class="clear"></div>
-        </div>
-      </div>
-    </ion-item>
-  </ion-list>
+	<ion-grid [virtualScroll]="listings" approxItemHeight ="300px">
+		<ion-row>
+			<ion-col *virtualItem="let listing" col-6 (click)="viewItem(listing.listingId)">
+				<div>
+				<!--<img src="{{listing.images[0]}}"> doesnt work -->
+				<img src="assets/imgs/guts.jpg">
+				<div class="name" text-left>{{listing.listingTitle}}</div>
+				<div class="name" text-left>${{listing.costPerDay}}</div>
+				<div class="name" text-left>{{listing.listingDescription}}</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 
 </ion-content>

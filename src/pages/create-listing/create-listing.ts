@@ -4,8 +4,8 @@ import { AlertController } from 'ionic-angular';
 import { Listing } from '../../entities/Listing';
 import { ListingProvider } from '../../providers/listing/listing';
 import { NgForm } from '@angular/forms';
-import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
 import { CustomerProvider } from '../../providers/customer/customer';
+import { ItemPage } from '../item/item';
 
 /**
  * Generated class for the CreateListingPage page.
@@ -36,7 +36,7 @@ export class CreateListingPage {
 		this.newListing = new Listing();
 		this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
 			response => {
-				this.newListing.customer = response.customer;
+				this.newListing.customerEntity = response.customer;
 				console.log("***************Successfully set up customer*******************");
 			},
 			error =>{
@@ -62,8 +62,9 @@ export class CreateListingPage {
 
 		this.infoMessage = null;
 		this.errorMessage = null;
-		console.log(this.newListing.customer);
+		console.log(this.newListing.customerEntity);
 		if (createProductForm.valid) {
+			console.log(this.newListing);
 			this.listingProvider.createListing(this.newListing).subscribe(
 				response => {
 					let alert = this.alertCtrl.create({
@@ -72,7 +73,7 @@ export class CreateListingPage {
 						buttons: ['Dismiss!']
 					});
 					console.log("Listing Id of new Item: " + response.listing.listingId);
-					this.navCtrl.push(ViewListingDetailPage, { 'listingToView': response.listing.listingId });
+					this.navCtrl.push(ItemPage, { 'listingToView': response.listing.listingId });
 					alert.present();
 					this.infoMessage = "New Listing " + response.listing.listingId + " created successfully";
 				},

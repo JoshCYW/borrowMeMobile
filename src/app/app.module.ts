@@ -31,7 +31,6 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { GettingStartedGuidePage } from '../pages/getting-started-guide/getting-started-guide';
 import { OffersMadePage } from '../pages/offers-made/offers-made';
 import { OffersReceivedPage } from '../pages/offers-received/offers-received';
-import { ViewListingDetailPage } from '../pages/view-listing-detail/view-listing-detail';
 import { CreateListingPage } from '../pages/create-listing/create-listing';
 import { FrontPage } from '../pages/front/front';
 
@@ -51,7 +50,6 @@ import { FrontPage } from '../pages/front/front';
     GettingStartedGuidePage,
     OffersMadePage,
     OffersReceivedPage,
-    ViewListingDetailPage,
     CreateListingPage,
     LandingPage,
     ItemPage,
@@ -84,7 +82,6 @@ import { FrontPage } from '../pages/front/front';
     GettingStartedGuidePage,
     OffersMadePage,
     OffersReceivedPage,
-    ViewListingDetailPage,
     CreateListingPage,
     LandingPage,
     ItemPage,

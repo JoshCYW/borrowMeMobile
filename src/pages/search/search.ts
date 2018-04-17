@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular';
 import { Listing } from '../../entities/Listing';
 import { ListingProvider} from '../../providers/listing/listing';
-import { ItemPage } from '../item/item';
-
+import { FormControl } from '@angular/forms';
+import { ItemPage } from "../item/item";
+import 'rxjs/add/operator/debounceTime';
 /**
  * Generated class for the SearchPage page.
  *
@@ -16,23 +17,63 @@ import { ItemPage } from '../item/item';
   templateUrl: 'search.html',
 })
 export class SearchPage {
-	
+
+	errorMessage: string;
 	listings: Listing[];
+	searchItems: any;
+	searchTerm: string = '';
+	searchControl: FormControl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
-	  //this.listings = listingProvider.getByName(1); to be implemented when rest works
+    this.searchControl = new FormControl();
 	  
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    console.log('ionViewDidLoad LandingPage');
+	
+	this.listingProvider.getListings().subscribe(
+		response => {
+			this.listings = response.listings;
+		},
+		error => {
+			this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+		}
+	);
+	
+	this.searchControl.valueChanges.debounceTime(300).subscribe(search => {
+
+		this.setFilteredItems();
+
+	});
+
   }
+  
+    ionViewWillEnter() {
+		this.listingProvider.getListings().subscribe(
+			response => {
+				this.listings = response.listings;
+			},
+			error => {
+				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+			}
+		);
 
-
-
-  // view a item. Will insert a var next time
-  viewItem() {
-    //this.nav.push(ItemPage);
+	}
+	
+	viewItem(listingId) {
+	this.navCtrl.push(ItemPage, {'listingToViewId': listingId});	
+	}
+	
+	
+	filterItems(searchTerm) {
+		return this.listings.filter((listing) => {
+            return listing.listingTitle.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        });    
+	}
+  
+  setFilteredItems() {
+	 this.searchItems = this.filterItems(this.searchTerm);
   }
 
 }

@@ -1,9 +1,9 @@
-import { Customer } from "./customer";
+import { CustomerEntity } from "./customer";
 
 export class Listing {
 	category: string;
 	costPerDay: number;
-	customer: Customer;
+	customerEntity: CustomerEntity;
 	images: string[];
 	listingAvailable: Boolean;
 	listingDescription: string;

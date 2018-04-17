@@ -24,8 +24,8 @@
 -->
 
     <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
-    <ion-list>
-        <ion-item *ngFor="let searchItem of searchItems">
+    <ion-list *ngIf="searchTerm != ''">
+        <ion-item *ngFor="let searchItem of searchItems" (click)="viewItem(searchItem.listingId)" >
             {{searchItem.listingTitle}}
         </ion-item>
     </ion-list>
@@ -35,7 +35,7 @@
 
 	<div class="slide-banner">
 		<ion-slides pager class="banner-slides" autoplay="3000" loop = "true" speed = "3000">
-			<ion-slide style ="background-image: url('assets/imgs/guts.jpg'); background-position: center center;background-size: cover:"></ion-slide>
+			<ion-slide style ="background-image: url('assets/imgs/guts.jpg'); background-position: center center;background-size: cover;"></ion-slide>
 			<ion-slide style="background-image: url('assets/imgs/logo.png'); background-position: center center; background-size: cover;"></ion-slide>
 		</ion-slides>
 	</div>

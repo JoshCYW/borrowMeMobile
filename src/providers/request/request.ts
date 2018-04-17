@@ -91,7 +91,7 @@ export class RequestProvider {
       );
   }
 
-  isLister(customerId: string, listingId: string): Observable<any> {
+  isLister(customerId: string, listingId: number): Observable<any> {
     let path: string = '';
 
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
@@ -109,7 +109,7 @@ export class RequestProvider {
 
   acceptRequest(requestId: number): Observable<any> {
     let path: string = '';
-
+    
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
       path = this.baseUrl;
     }
