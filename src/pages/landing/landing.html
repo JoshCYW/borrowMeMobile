@@ -1,0 +1,93 @@
+<!--
+  Generated template for the LandingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+<!--
+	<ion-searchbar>[(ngModel)]="searchTerms"</ion-searchbar>
+	<button ion-button type="button" (click)="sort()">Sort</button>
+	  <ion-list>
+	<ion-item *ngFor="let listing of listings | search : searchTerms | sort: {property: column, order: order}">
+		{{listing.listingTitle}}
+    </ion-item>
+  </ion-list>
+--> 
+
+<!-- shit filter
+	<ion-searchbar [showCancelButton]="true"(ionInput)="getSearchResults($event)"></ion-searchbar>
+	<ion-list *ngFor="let item of searchItems">
+		<ion-item>{{item.listingTitle}}</ion-item>
+	</ion-list>
+-->
+
+    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let searchItem of searchItems">
+            {{searchItem.listingTitle}}
+        </ion-item>
+    </ion-list>
+</ion-header>
+
+<ion-content>
+
+	<div class="slide-banner">
+		<ion-slides pager class="banner-slides" autoplay="3000" loop = "true" speed = "3000">
+			<ion-slide style ="background-image: url('assets/imgs/guts.jpg'); background-position: center center;background-size: cover:"></ion-slide>
+			<ion-slide style="background-image: url('assets/imgs/logo.png'); background-position: center center; background-size: cover;"></ion-slide>
+		</ion-slides>
+	</div>
+	
+	<!-- use a grid maybe? solve next time -->
+	<div class="category-bar">
+	<ion-list>
+		   <ion-segment [(ngModel)]="icons">
+			<ion-segment-button *ngFor="let category of categories" value="{{category}}">
+				<ion-icon name="home"></ion-icon>
+				{{category}}
+			 </ion-segment-button>
+		   </ion-segment>
+	</ion-list>
+	</div>	
+	
+	<!-- not working as intended
+	 <ion-list class="category-list">
+      <ion-row>
+        <ion-col *ngFor="let category of categories" (click)="viewCategory()">
+		    <ion-icon name ="pizza">{{category}}</ion-icon>
+        </ion-col>
+      </ion-row>
+	  <ion-row>
+	  		<ion-col ngFor="let category of categories2" (click)="viewCategory()">
+			<ion-icon name ="pizza">{{category}}</ion-icon>
+        </ion-col>
+		</ion-row>
+    </ion-list>
+	-->
+	
+
+	
+	<h3 text-center>FRESH LISTINGS </h3>
+	<div *ngIf="errorMessage" class="errorText">
+		{{errorMessage}}
+	</div>	
+	
+
+	<ion-grid [virtualScroll]="listings" approxItemHeight ="300px">
+		<ion-row>
+			<ion-col *virtualItem="let listing" col-6 (click)="viewItem(listing.listingId)">
+				<div>
+				<!--<img src="{{listing.images[0]}}"> doesnt work -->
+				<img src="assets/imgs/guts.jpg">
+				<div class="name" text-left>{{listing.listingTitle}}</div>
+				<div class="name" text-left>${{listing.costPerDay}}</div>
+				<div class="name" text-left>{{listing.listingDescription}}</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+</ion-content>

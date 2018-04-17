@@ -1,0 +1,149 @@
+
+<ion-header>
+
+</ion-header>
+
+<ion-content *ngIf="listingToView != null">
+    <div class="item-image">
+		<button ion-button icon-only class="returnButton" clear ="true" (click)="popView()">
+			<ion-icon name="arrow-back"></ion-icon>
+		</button>
+	   <ion-slides pager autoplay="2000" class="border-bottom">
+			<ion-slide style ="background-image: url('assets/imgs/guts.jpg'); background-position: center center;background-size: cover:"></ion-slide>
+			<ion-slide style="background-image: url('assets/imgs/logo.png'); background-position: center center; background-size: cover;"></ion-slide>
+	   </ion-slides>
+
+    </div>
+	
+    <ion-grid>
+		<h1 ion-text color = "dark">{{listingToView.listingTitle}}</h1>
+		<!-- need to change backend
+		<ion-row>
+			<ion-icon name = "clock">Posted date:</ion-icon>
+		</ion-row>
+		-->
+		<ion-row>
+			<ion-icon name = "pricetag">Price:${{listingToView.costPerDay}}</ion-icon>
+		</ion-row>
+		<!-- gone?
+		<ion-row>
+			<ion-icon name = "heart">Likes:</ion-icon>
+		</ion-row>
+		-->
+		<ion-row>
+			<ion-icon name = "list">Category:{{listingToView.category}}</ion-icon>
+		</ion-row>
+		<ion-row>
+			<ion-icon name = "information-circle">Item Description:</ion-icon>
+			<div>{{listingToView.listingDescription}}</div>
+		</ion-row>	  
+    </ion-grid>
+
+	<div class ="seller-info" margin-top>
+		<ion-list>
+		<ion-list-header>More about the Seller</ion-list-header>
+			<ion-item>
+				<ion-avatar item-left>
+					<img src ='assets/imgs/guts.jpg'>
+				</ion-avatar>		
+				<div>
+					<div>
+						<span class ="sellerUsername">{{listingToView.customerEntity.username}}</span>
+					</div>
+					<p class ="sellerDescription">
+						In the beginning, there was a {{listingToView.customerEntity.username}}.
+					</p>
+				</div>
+			</ion-item>
+		</ion-list>
+		<!-- backend not implemented 
+			<ion-item-divider>
+			<ion-grid>
+				<ion-row>
+					<ion-col text-left>
+						<span>FeedBack</span>
+					</ion-col>
+					<ion-col text-center>
+						<ion-icon name = "happy">24</ion-icon>
+					</ion-col>
+					<ion-col text-center>
+						<ion-icon name = "outlet">12</ion-icon>
+					</ion-col>
+					<ion-col text-center>
+						<ion-icon name = "sad">100</ion-icon>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			</ion-item-divider>
+		</ion-list>
+		-->
+	</div>
+	
+	<div class="Feedback" margin-top>
+		<div>Feedback</div>
+		<ion-list>
+		<!--when i can actually call webservice<ion-item *ngFor="let review of item.reviews" text-wrap> -->
+			<ion-item>
+				<ion-avatar item-left>
+				<img src ='assets/imgs/guts.jpg'>
+				</ion-avatar>
+
+			<div>
+				<div>
+					<span>Username</span>
+					<div></div>
+				</div>
+				<div>
+					<span>Rating:</span>
+				</div>
+				<p>
+				Filler feeeeeeeeeedback
+				</p>
+			</div>
+			</ion-item>
+			<ion-item>
+				<ion-avatar item-left>
+				<img src ='assets/imgs/guts.jpg'>
+				</ion-avatar>
+
+			<div>
+				<div>
+					<span>Username</span>
+					<div></div>
+				</div>
+				<div>
+					<span>Rating:</span>
+				</div>
+				<p>
+				Filler feeeeeeeeeedback
+				</p>
+			</div>
+			</ion-item>
+		</ion-list>
+	</div>
+	
+	<ion-grid *ngIf="listings!= null">
+		<ion-row>
+			<ion-col *ngFor="let listing of listings" col-6 (click)="viewItem(listing.listingId)">
+				<div>
+				<img src="assets/imgs/guts.jpg"> 
+				<div class="name" text-left>{{listing.listingTitle}}</div>
+				<div class="name" text-left>${{listing.costPerDay}}</div>
+				<div class="name" text-left>{{listing.listingDescription}}</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+</ion-content>
+
+	<div *ngIf="errorMessage" class="errorText">
+		{{errorMessage}}
+	</div>
+
+<ion-footer>
+  <button ion-button block icon-start>
+	<ion-icon name ="heart"></ion-icon>
+	Make Request
+  </button>
+</ion-footer>
