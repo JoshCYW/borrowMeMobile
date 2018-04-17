@@ -5,7 +5,7 @@ import { FormBuilder, AbstractControl, FormGroup, Validators, NgForm } from '@an
 import * as $ from "jquery";
 import { CustomerProvider } from '../../providers/customer/customer';
 
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the SignupPage page.
@@ -22,7 +22,7 @@ import { TabsPage } from '../tabs/tabs';
 export class SignupPage {
   errorMessage: string;
   infoMessage: string;
-  newCustomer: Customer;
+  newCustomer: CustomerEntity;
   submitted: boolean;
 
   constructor(public navCtrl: NavController,
@@ -33,7 +33,7 @@ export class SignupPage {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController) {
     this.submitted = false;
-    this.newCustomer = new Customer();
+    this.newCustomer = new CustomerEntity();
   }
 
   ionViewDidLoad() {

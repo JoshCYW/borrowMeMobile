@@ -36,6 +36,7 @@ export class LoginPage
   {
     this.submitted = false;
     this.isLogin = false;
+    this.customer = null;
   }
 
   ionViewDidLoad()
@@ -66,7 +67,7 @@ export class LoginPage
   			response => {
           if(response.customerEntity != null){
           
-            this.customer = response.customer;
+            this.customer = response.customerEntity;
             //complete log in and send to profile page for now
             sessionStorage.setItem("customer", response.customerEntity);
             sessionStorage.setItem("firstName", response.customerEntity.firstName);
@@ -119,19 +120,4 @@ export class LoginPage
       this.password = "";
     }
   }
-
-  get(){
-    console.log(this.username);
-    this.customerProvider.getCustomer(this.username).subscribe(
-      response=>{
-        if(response.customerEntity != null){
-          console.log(response.customerEntity);
-        }
-        else{
-          console.log("nope");
-        }
-      }
-    )
-  }
-
 }

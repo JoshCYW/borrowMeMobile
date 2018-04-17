@@ -90,7 +90,7 @@ export class CustomerProvider {
 		}
 
 		let updateCustomerReq = {
-			"customer": customerToUpdate
+			"customerEntity": customerToUpdate
 		};
 
 		return this.httpClient.post<any>(path, updateCustomerReq, httpOptions).pipe
@@ -130,7 +130,7 @@ export class CustomerProvider {
 		}
 		console.log("I MADE IT THROUGH TO THE SIGNUP FUNCTION");
 		let newCustomerReq = {
-			"customer": newCustomer
+			"customerEntity": newCustomer
 		};
 		console.log("MADE IT PAST NEW CUSTOMER REQ ")
 		return this.httpClient.put<any>(path, newCustomerReq, httpOptions).pipe
@@ -151,7 +151,7 @@ export class CustomerProvider {
 			path = this.fullBaseUrl;
 		}
 		let updateCustomerReq = {
-			"customer": customerToUpdate
+			"customerEntity": customerToUpdate
 		};
 
 		return this.httpClient.post<any>(path + "/changePassword", updateCustomerReq, httpOptions).pipe

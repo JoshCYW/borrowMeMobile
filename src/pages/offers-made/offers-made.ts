@@ -33,32 +33,32 @@ export class OffersMadePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OffersMadePage');
 
-    this.requestProvider.requestMade(sessionStorage.getItem("customerId")).subscribe(
-      response => {
-        this.requests = response.requests;
-        for(let request in this.requests){
-          let val = this.requests[request];
-          console.log("************ ListingId: " + val.listingId + "****************");
-          this.listingProvider.getListingByListingId(val.listingId).subscribe(
-            response => {
-              val.listingTitle = response.listing.listingTitle;
-              console.log("************ Successfully set Listing Title************");
-            },
-            error => {
-              this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-            }
-          )
-        }
-      },
-      error => {
-        let alert = this.alertCtrl.create({
-          title: 'Error retrieveing Requests made',
-          subTitle: 'Please try again',
-          buttons: ['Dismiss!']
-        });
-        alert.present();
-      }
-    )
+    // this.requestProvider.requestMade(sessionStorage.getItem("customerId")).subscribe(
+    //   response => {
+    //     this.requests = response.requests;
+    //     for(let request in this.requests){
+    //       let val = this.requests[request];
+    //       console.log("************ ListingId: " + val.listingId + "****************");
+    //       this.listingProvider.getListingByListingId(val.listingId).subscribe(
+    //         response => {
+    //           val.listingTitle = response.listing.listingTitle;
+    //           console.log("************ Successfully set Listing Title************");
+    //         },
+    //         error => {
+    //           this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //         }
+    //       )
+    //     }
+    //   },
+    //   error => {
+    //     let alert = this.alertCtrl.create({
+    //       title: 'Error retrieveing Requests made',
+    //       subTitle: 'Please try again',
+    //       buttons: ['Dismiss!']
+    //     });
+    //     alert.present();
+    //   }
+    // )
   }
 
   viewRequestDetails(event, request){

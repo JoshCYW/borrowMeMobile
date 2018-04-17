@@ -6,7 +6,7 @@ import { ToastController } from 'ionic-angular';
 
 import { CustomerProvider } from '../../providers/customer/customer';
 
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 /**
  * Generated class for the ProfileUpdatePage page.
  *
@@ -21,7 +21,7 @@ import { Customer } from '../../entities/customer';
 })
 export class ProfileUpdatePage {
 
-  customerToUpdate: Customer;
+  customerToUpdate: CustomerEntity;
   submitted: boolean;
   errorMessage: string;
   infoMessage: string;
@@ -40,7 +40,7 @@ export class ProfileUpdatePage {
     if (sessionStorage.getItem("username") !== null) {
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerToUpdate = response.customer;
+          this.customerToUpdate = response.customerEntity;
           console.log("Hello");
         },
         error => {
@@ -54,8 +54,8 @@ export class ProfileUpdatePage {
     if (sessionStorage.getItem("username") !== null) {
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerToUpdate = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerToUpdate = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
         },
         error => {
           console.log("Error in retrieving customer details")
@@ -71,15 +71,16 @@ export class ProfileUpdatePage {
 
   update(updateCustomer: NgForm) {
     this.submitted = true;
+    console.log(this.customerToUpdate);
     if (updateCustomer.valid) {
       this.customerProvider.updateCustomer(this.customerToUpdate).subscribe(
         response => {
-          sessionStorage.setItem("firstName", response.customer.firstName);
-          sessionStorage.setItem("lastName", response.customer.lastName);
-          sessionStorage.setItem("username", response.customer.username);
-          sessionStorage.setItem("identificationNo", response.customer.identificationNo);
-          sessionStorage.setItem("email", response.customer.email);
-          sessionStorage.setItem("contactNo", response.customer.contactNo);
+          sessionStorage.setItem("firstName", response.customerEntity.firstName);
+          sessionStorage.setItem("lastName", response.customerEntity.lastName);
+          sessionStorage.setItem("username", response.customerEntity.username);
+          sessionStorage.setItem("identificationNo", response.customerEntity.identificationNo);
+          sessionStorage.setItem("email", response.customerEntity.email);
+          sessionStorage.setItem("contactNo", response.customerEntity.contactNo);
           console.log("Success");
           let alert = this.alertCtrl.create({
             title: 'Update successful',

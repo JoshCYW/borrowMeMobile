@@ -76,7 +76,12 @@ export class LandingPage {
             return listing.listingTitle.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });    
 	}
-  
+/*
+	goToSearch($event) {
+		let target = this.listings.filter(listing => listing.listingTitle === '$event');
+		this.viewItem(target.listingId);
+	}
+*/
   setFilteredItems() {
 	 this.searchItems = this.filterItems(this.searchTerm);
   }

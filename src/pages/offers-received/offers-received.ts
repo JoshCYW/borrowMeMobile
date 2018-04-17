@@ -31,28 +31,28 @@ export class OffersReceivedPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OffersReceivedPage');
 
-    this.requestProvider.requestReceived(sessionStorage.getItem("customerId")).subscribe(
-      response=>{
-        this.requests = response.requests;
-        for(let request in this.requests){
-          let val = this.requests[request];
-          console.log("************ ListingId: " + val.listingId + "****************");
-          this.listingProvider.getListingByListingId(val.listingId).subscribe(
-            response => {
-              val.listingTitle = response.listing.listingTitle;
-              console.log("************ Successfully set Listing Title************");
-            },
-            error => {
-              this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-            }
-          )
-        }
-        console.log("************ Successfully completed RequestReceived Function ****************");
-      },
-      error => {
-        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-      }
-    )
+    // this.requestProvider.requestReceived(sessionStorage.getItem("customerId")).subscribe(
+    //   response=>{
+    //     this.requests = response.requests;
+    //     for(let request in this.requests){
+    //       let val = this.requests[request];
+    //       console.log("************ ListingId: " + val.listingId + "****************");
+    //       this.listingProvider.retrieveListingById(val.listingId).subscribe(
+    //         response => {
+    //           val.listingTitle = response.listing.listingTitle;
+    //           console.log("************ Successfully set Listing Title************");
+    //         },
+    //         error => {
+    //           this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //         }
+    //       )
+    //     }
+    //     console.log("************ Successfully completed RequestReceived Function ****************");
+    //   },
+    //   error => {
+    //     this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //   }
+    // )
   }
 
   viewRequestDetails(event,request){
