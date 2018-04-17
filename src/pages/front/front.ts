@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the FrontPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoginPage } from '../login/login';
+import { SignupPage } from '../signup/signup';
+import { ViewAllCustomersPage } from '../view-all-customers/view-all-customers';
+import { ProfileUpdatePage } from '../profile-update/profile-update';
+import * as $ from "jquery";
+
 
 @IonicPage()
 @Component({
@@ -18,8 +18,39 @@ export class FrontPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FrontPage');
+  ionViewDidLoad()
+  {
+    console.log('ionViewDidLoad LoginPage');
+
+    if(sessionStorage.getItem("isLogin") === "true")
+    {
+      console.log("there is a user logged in and his name is " + sessionStorage.getItem("firstName") );
+    }
+    else{
+      console.log("No user is currently logged in.");
+    }
+    $(document).ready(function () {
+        var imageFile = ["home.png"];
+        var currentIndex = 0;
+        setInterval(function () {
+            if (currentIndex == imageFile.length) {
+                currentIndex = 0;
+            }
+            $(".slides").css('background-image', 'url("/assets/imgs/' + imageFile[currentIndex++] + '")');
+        }, 3000);
+    });
   }
 
+  doLogin(){
+    this.navCtrl.push(LoginPage);
+  }
+  doSignup(){
+    this.navCtrl.push(SignupPage);
+  }
+  viewAllCustomers(){
+    this.navCtrl.push(ViewAllCustomersPage);
+  }
+  updateProfile(){
+    this.navCtrl.push(ProfileUpdatePage);
+  }
 }

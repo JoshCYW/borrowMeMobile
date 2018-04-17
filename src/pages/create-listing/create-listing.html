@@ -7,12 +7,66 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>create-listing</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create New Listing</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <form #createListingForm="ngForm" (ngSubmit)="create(createListingForm)">
+    <div>
+      <ion-list>
+        <ion-item>
+          <ion-label fixed>Listing title</ion-label>
+          <ion-input type="text" id="listingTitle" name="listingTitle" [(ngModel)]="newListing.listingTitle" required="true" #listingTitle="ngModel"></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-label fixed>Description</ion-label>
+          <ion-input type="text" id="listingDescription" name="listingDescription" [(ngModel)]="newListing.listingDescription" required="true"
+            #listingDescription="ngModel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed>Cost/Day</ion-label>
+          <ion-input type="number" id="costPerDay" name="costPerDay" [(ngModel)]="newListing.costPerDay" required="true" #costPerDay="ngModel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select id="category" name="category" [(ngModel)]="newListing.category" required="true" #category="ngModel">
+            <ion-option value="SPORTS">Sports</ion-option>
+            <ion-option value="ADVENTURE">Adventure</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-list name="availability" id="availability" radio-group [(ngModel)]="newListing.listingAvailable">
+          <ion-list-header>
+            Make it immediately available?
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>Yes</ion-label>
+            <ion-radio checked="true" value="true"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="false"></ion-radio>
+          </ion-item>
+        </ion-list>
+        <ion-item>
+          <button ion-button block (click)="clear()">
+            Clear
+          </button>
+          <button type="submit" ion-button block>
+            Create
+          </button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </form>
 </ion-content>

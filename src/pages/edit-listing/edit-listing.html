@@ -6,13 +6,60 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>edit-listing</ion-title>
+  <ion-navbar color="theme">
+    <div *ngIf="listingToUpdate != null">
+      <ion-title>Edit Listing: {{listingToUpdate.listingTitle}}</ion-title>
+    </div>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <div *ngIf="listingToUpdate != null">
+    <form #updateListingForm="ngForm" (ngSubmit)="update(updateListingForm)">
+      <ion-list>
+        <ion-item>
+          <ion-label fixed>Listing title</ion-label>
+          <ion-input type="text" id="listingTitle" name="listingTitle" [(ngModel)]="listingToUpdate.listingTitle" required="true" #listingTitle="ngModel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>Listing description</ion-label>
+          <ion-input type="text" id="listingDescription" name="listingDescription" [(ngModel)]="listingToUpdate.listingDescription"
+            required="true" #listingDescription="ngModel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cost/day</ion-label>
+          <ion-input type="number" id="costPerDay" name="costPerDay" [(ngModel)]="listingToUpdate.costPerDay" required="true" #costPerDay="ngModel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select id="category" name="category" [(ngModel)]="listingToUpdate.category" required="true" #category="ngModel">
+            <ion-option value="SPORTS">Sports</ion-option>
+            <ion-option value="ADVENTURE">Adventure</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-list name="availability" id="availability" radio-group [(ngModel)]="listingToUpdate.listingAvailable" #availability="ngModel">
+          <ion-list-header>
+            List item publicly?
+          </ion-list-header>
 
+          <ion-item>
+            <ion-label>Yes</ion-label>
+            <ion-radio checked="true" value="true"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="false"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+      <ion-item no-lines>
+        <button type="submit" class="btn" block>
+          Update Listing
+        </button>
+      </ion-item>
+    </form>
+  </div>
 </ion-content>

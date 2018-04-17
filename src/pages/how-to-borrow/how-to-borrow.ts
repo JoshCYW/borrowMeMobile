@@ -20,6 +20,19 @@ export class HowToBorrowPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToBorrowPage');
+  } 
+
+  ngAfterViewInit() {
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
+  }
+
+  goBack(){
+    this.navCtrl.pop();
   }
 
 }

@@ -1,3 +1,14 @@
 page-edit-listing {
-
+    .btn{
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        color:white;
+        background-color: rgb(96, 156, 5);
+        font-family: roboto;
+    }
+    .btn:hover{
+        background-color: green;
+        transition: 0.5s;
+    }
 }
