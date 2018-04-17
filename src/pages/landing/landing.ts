@@ -5,6 +5,7 @@ import { ListingProvider} from '../../providers/listing/listing';
 import { FormControl } from '@angular/forms';
 import { ItemPage } from "../item/item";
 import 'rxjs/add/operator/debounceTime';
+import { MocksProvider } from '../../providers/mocks/mocks';
 
 /**
  * Generated class for the LandingPage page.
@@ -26,8 +27,9 @@ export class LandingPage {
 	searchItems: any;
 	searchTerm: string = '';
 	searchControl: FormControl;
+	mockListings: String[];
 	
-  constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider,public mockProvider: MocksProvider) {
   this.categories = ['Party','Electronics','Sports'];
   this.categories2 = ['Vehicles','Others'];
 	this.searchControl = new FormControl();
@@ -52,6 +54,9 @@ export class LandingPage {
 
 	});
 
+		this.mockListings = this.mockProvider.getListingPhotos();
+		console.log(this.mockListings[0]);
+		this.buildArray(this.mockListings);
   }
   
     ionViewWillEnter() {
@@ -86,4 +91,19 @@ export class LandingPage {
 	 this.searchItems = this.filterItems(this.searchTerm);
   }
 
+	private buildArray(array) {
+		return new Promise(resolve => {
+			let length = array.length, j, i;
+			// While there remain elements to shuffle…
+			while (length) {
+				// Pick a remaining element…
+				i = Math.floor(Math.random() * length--);
+				// And swap it with the current element.
+				j = array[length];
+				array[length] = array[i];
+				array[i] = j;
+			}
+			resolve(true);
+		});
+	}
 }

@@ -33,6 +33,7 @@ import { OffersMadePage } from '../pages/offers-made/offers-made';
 import { OffersReceivedPage } from '../pages/offers-received/offers-received';
 import { CreateListingPage } from '../pages/create-listing/create-listing';
 import { FrontPage } from '../pages/front/front';
+import { MocksProvider } from '../providers/mocks/mocks';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { FrontPage } from '../pages/front/front';
     ListingProvider,
     FilterProvider,
     CustomerProvider,
-    RequestProvider
+    RequestProvider,
+    MocksProvider
   ]
 })
 export class AppModule { }
