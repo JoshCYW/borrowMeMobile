@@ -9,7 +9,7 @@ import { ListingProvider } from '../../providers/listing/listing';
 
 import { ProfileUpdatePage } from '../profile-update/profile-update';
 
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 import { Listing } from '../../entities/listing';
 
 import { SettingsPage } from '../settings/settings';
@@ -36,7 +36,7 @@ export class ProfilePage {
   errorMessage: string;
   infoMessage: string;
 
-  customerProfile: Customer;
+  customerProfile: CustomerEntity;
   listings: Listing[];
 
   constructor(public navCtrl: NavController,
@@ -64,8 +64,8 @@ export class ProfilePage {
 
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerProfile = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerProfile = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
           this.infoMessage = "Product loaded successfully";
         },
         error => {
@@ -92,8 +92,8 @@ export class ProfilePage {
 
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerProfile = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerProfile = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
           this.infoMessage = "Product loaded successfully";
         },
         error => {
@@ -124,4 +124,20 @@ export class ProfilePage {
   offersReceived(){
     this.navCtrl.push(OffersReceivedPage);
   } 
+
+  private buildArray(array) {
+		return new Promise(resolve => {
+			let length = array.length, j, i;
+			// While there remain elements to shuffle…
+			while (length) {
+				// Pick a remaining element…
+				i = Math.floor(Math.random() * length--);
+				// And swap it with the current element.
+				j = array[length];
+				array[length] = array[i];
+				array[i] = j;
+			}
+			resolve(true);
+		});
+	}
 }

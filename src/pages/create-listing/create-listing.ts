@@ -6,6 +6,7 @@ import { ListingProvider } from '../../providers/listing/listing';
 import { NgForm } from '@angular/forms';
 import { ViewListingDetailPage } from '../view-listing-detail/view-listing-detail';
 import { CustomerProvider } from '../../providers/customer/customer';
+import { ItemPage } from '../item/item';
 
 /**
  * Generated class for the CreateListingPage page.
@@ -34,15 +35,6 @@ export class CreateListingPage {
 		public customerProvider: CustomerProvider) {
 		this.submitted = false;
 		this.newListing = new Listing();
-		this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
-			response => {
-				this.newListing.customer = response.customer;
-				console.log("***************Successfully set up customer*******************");
-			},
-			error =>{
-				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-			}
-		)
 	}
 
 	clear() {
@@ -55,6 +47,16 @@ export class CreateListingPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad CreateListingPage');
+		this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
+			response => {
+				this.newListing.customerEntity = response.customerEntity;
+				console.log(this.newListing.customerEntity);
+				console.log("***************Successfully set up customer*******************");
+			},
+			error =>{
+				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+			}
+		)
 	}
 
 	create(createProductForm: NgForm) {
@@ -62,7 +64,8 @@ export class CreateListingPage {
 
 		this.infoMessage = null;
 		this.errorMessage = null;
-		console.log(this.newListing.customer);
+		console.log(this.newListing.customerEntity);
+		console.log(this.newListing);
 		if (createProductForm.valid) {
 			this.listingProvider.createListing(this.newListing).subscribe(
 				response => {
@@ -72,7 +75,7 @@ export class CreateListingPage {
 						buttons: ['Dismiss!']
 					});
 					console.log("Listing Id of new Item: " + response.listing.listingId);
-					this.navCtrl.push(ViewListingDetailPage, { 'listingToView': response.listing.listingId });
+					this.navCtrl.push(ItemPage, { 'listingToViewId': response.listing.listingId });
 					alert.present();
 					this.infoMessage = "New Listing " + response.listing.listingId + " created successfully";
 				},

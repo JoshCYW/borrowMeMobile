@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ListingProvider } from '../../providers/listing/listing';
 import { Listing } from '../../entities/listing';
+import { EditListingPage } from '../edit-listing/edit-listing';
 
 
 /**
@@ -12,8 +13,8 @@ import { Listing } from '../../entities/listing';
  */
 
 @Component({
-  selector: 'page-item',
-  templateUrl: 'item.html',
+	selector: 'page-item',
+	templateUrl: 'item.html',
 })
 export class ItemPage {
 	errorMessage: string;
@@ -21,49 +22,27 @@ export class ItemPage {
 	listingToViewId: number;
 	listingToView: Listing;
 	listings: Listing[];
+	customerId: number;
+	checkCustId: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
-	this.listingToView = null;
-	this.listingToViewId = navParams.get('listingToViewId');
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemPage');
-	console.log(this.listingToViewId);
-	
-	this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
-			response => {
-				this.listingToView = response.listing;
-				this.infoMessage = "Listing loaded successfully";
-				console.log(this.listingToView.costPerDay);
-			},
-			error => {				
-				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-			}
-		);
-		
-	this.listingProvider.getListings().subscribe(
-		response => {
-			this.listings = response.listings;
-			this.buildArray(this.listings);
-		},
-		error => {
-			this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
-		}
-	);
-  }
-
-	ionViewWillEnter() {	
+	constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
+		this.listingToView = null;
+		this.listingToViewId = navParams.get('listingToViewId');
+		this.checkCustId = +sessionStorage.getItem("customerId");
+		console.log("Customer ID (CHECK)" + this.checkCustId)
 		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
 			response => {
 				this.listingToView = response.listing;
-				this.infoMessage = "Listing loaded successfully";								
+				this.customerId = response.listing.customerEntity.customerId;
+				this.infoMessage = "Listing loaded successfully";
+				console.log(this.listingToView.costPerDay);
+				console.log("Customer ID (CustomerId)" + this.customerId)
 			},
-			error => {				
+			error => {
 				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
 			}
 		);
-		
+
 		this.listingProvider.getListings().subscribe(
 			response => {
 				this.listings = response.listings;
@@ -73,9 +52,38 @@ export class ItemPage {
 				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
 			}
 		);
-		
 	}
-	
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad ItemPage');
+		console.log(this.listingToViewId);
+	}
+
+	ionViewWillEnter() {
+		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
+			response => {
+				this.listingToView = response.listing;
+				this.customerId = response.listing.customerEntity.customerId;
+				this.infoMessage = "Listing loaded successfully";
+				console.log(this.listingToView.costPerDay);
+				console.log("Customer ID (CustomerId)" + this.customerId)
+			},
+			error => {
+				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+			}
+		);
+
+		this.listingProvider.getListings().subscribe(
+			response => {
+				this.listings = response.listings;
+				this.buildArray(this.listings);
+			},
+			error => {
+				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+			}
+		);
+	}
+
 	private buildArray(array) {
 		return new Promise(resolve => {
 			let length = array.length, j, i;
@@ -88,15 +96,23 @@ export class ItemPage {
 				array[length] = array[i];
 				array[i] = j;
 			}
-		resolve(true);
+			resolve(true);
 		});
 	}
 
 	viewItem(listingId) {
-		this.navCtrl.push(ItemPage, {'listingToViewId': listingId});	
-		}
+		this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });
+	}
 
 	popView() {
 		this.navCtrl.pop();
+	}
+
+	editListing() {
+		this.navCtrl.push(EditListingPage, { 'listingToViewId': this.listingToViewId });
+	}
+
+	makeRequest() {
+		this.navCtrl.push(ItemPage, { 'listingToViewId': this.listingToViewId });
 	}
 }

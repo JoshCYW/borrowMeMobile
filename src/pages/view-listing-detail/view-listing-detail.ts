@@ -37,43 +37,43 @@ export class ViewListingDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewListingDetailPage');
     console.log("Listing to View ID: " + this.listingToViewId)
-    this.listingProvider.retrieveListingById(this.listingToViewId).subscribe(
-      response => {
-        this.listingToView = response.listing;
-        this.infoMessage = "Product loaded successfully";
-        console.log("LISTING RETRIEVED SUCCESSFULLY");
-      },
-      error => {
-        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-        console.log("LISTING RETRIEVED UNSUCCESSFULLY");
-      }
-    );
+    // this.listingProvider.retrieveListingById(this.listingToViewId).subscribe(
+    //   response => {
+    //     this.listingToView = response.listing;
+    //     this.infoMessage = "Product loaded successfully";
+    //     console.log("LISTING RETRIEVED SUCCESSFULLY");
+    //   },
+    //   error => {
+    //     this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //     console.log("LISTING RETRIEVED UNSUCCESSFULLY");
+    //   }
+    // );
 
-    this.requestProvider.isLister(sessionStorage.getItem("customerId"),this.listingToViewId).subscribe(
-      response => {
-        console.log("************Lister function activated**************");
-        this.status = response.status;
-        console.log("************Status: " + this.status + "******************");
-      },
-      error => {
-        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-        console.log("*************Error while trying to engage isLister Function**************");
-      }
-    )
+    // this.requestProvider.isLister(sessionStorage.getItem("customerId"),this.listingToViewId).subscribe(
+    //   response => {
+    //     console.log("************Lister function activated**************");
+    //     this.status = response.status;
+    //     console.log("************Status: " + this.status + "******************");
+    //   },
+    //   error => {
+    //     this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //     console.log("*************Error while trying to engage isLister Function**************");
+    //   }
+    // )
   }
 
   ionViewWillEnter() {
-    this.listingProvider.retrieveListingById(this.listingToViewId).subscribe(
-      response => {
-        this.listingToView = response.listing;
-        this.infoMessage = "Product loaded successfully";
-        console.log("LISTING RETRIEVED SUCCESSFULLY");
-      },
-      error => {
-        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-        console.log("LISTING RETRIEVED UNSUCCESSFULLY");
-      }
-    );
+    // this.listingProvider.retrieveListingById(this.listingToViewId).subscribe(
+    //   response => {
+    //     this.listingToView = response.listing;
+    //     this.infoMessage = "Product loaded successfully";
+    //     console.log("LISTING RETRIEVED SUCCESSFULLY");
+    //   },
+    //   error => {
+    //     this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+    //     console.log("LISTING RETRIEVED UNSUCCESSFULLY");
+    //   }
+    // );
   }
 
   goToForm(){

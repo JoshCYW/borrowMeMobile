@@ -86,8 +86,9 @@ export class ListingProvider {
 		
 		//have to link with user account
 		let createProductReq = {
-			"ListingEntity": newListing
+			"listing": newListing
 		};
+		console.log(newListing);
 		
 		return this.httpClient.put<any>(path, createProductReq, httpOptions).pipe
 		(

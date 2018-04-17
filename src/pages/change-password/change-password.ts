@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfilePage } from '../profile/profile';
@@ -20,7 +20,7 @@ import { ProfilePage } from '../profile/profile';
 })
 export class ChangePasswordPage {
 
-  customerToUpdate: Customer;
+  customerToUpdate: CustomerEntity;
   submitted: boolean;
   errorMessage: string;
   infoMessage: string;
@@ -38,7 +38,7 @@ export class ChangePasswordPage {
     if (sessionStorage.getItem("username") !== null) {
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerToUpdate = response.customer;
+          this.customerToUpdate = response.customerEntity;
           console.log("Hello");
         },
         error => {
@@ -52,8 +52,8 @@ export class ChangePasswordPage {
     if (sessionStorage.getItem("username") !== null) {
       this.customerProvider.getCustomer(sessionStorage.getItem("username")).subscribe(
         response => {
-          this.customerToUpdate = response.customer;
-          console.log(response.customer.identificationNo);
+          this.customerToUpdate = response.customerEntity;
+          console.log(response.customerEntity.identificationNo);
         },
         error => {
           console.log("Error in retrieving customer details")
@@ -68,7 +68,7 @@ export class ChangePasswordPage {
     if (changePasswordForm.valid) {
       this.customerProvider.changePassword(this.customerToUpdate).subscribe(
         response => {
-          if (response.customer != null) {
+          if (response.customerEntity != null) {
             console.log("Success");
             let alert = this.alertCtrl.create({
               title: 'Password has been changed',

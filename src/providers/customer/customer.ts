@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Platform } from 'ionic-angular';
 
-import { Customer } from '../../entities/customer';
+import { CustomerEntity } from '../../entities/customer';
 
 
 
@@ -79,7 +79,7 @@ export class CustomerProvider {
 
 
 	//update profile
-	updateCustomer(customerToUpdate: Customer): Observable<any> {
+	updateCustomer(customerToUpdate: CustomerEntity): Observable<any> {
 		let path: string = '';
 
 		if (this.platform.is('core') || this.platform.is('mobileweb')) {
@@ -90,7 +90,7 @@ export class CustomerProvider {
 		}
 
 		let updateCustomerReq = {
-			"customer": customerToUpdate
+			"customerEntity": customerToUpdate
 		};
 
 		return this.httpClient.post<any>(path, updateCustomerReq, httpOptions).pipe
@@ -118,7 +118,7 @@ export class CustomerProvider {
 	}
 
 	//Sign up
-	signUp(newCustomer: Customer): Observable<any> {
+	signUp(newCustomer: CustomerEntity): Observable<any> {
 		console.log("CALLING SIGNUP FUNCTION");
 		let path: string = '';
 
@@ -130,7 +130,7 @@ export class CustomerProvider {
 		}
 		console.log("I MADE IT THROUGH TO THE SIGNUP FUNCTION");
 		let newCustomerReq = {
-			"customer": newCustomer
+			"customerEntity": newCustomer
 		};
 		console.log("MADE IT PAST NEW CUSTOMER REQ ")
 		return this.httpClient.put<any>(path, newCustomerReq, httpOptions).pipe
@@ -140,7 +140,7 @@ export class CustomerProvider {
 	}
 
 	//Change password
-	changePassword(customerToUpdate: Customer): Observable<any> {
+	changePassword(customerToUpdate: CustomerEntity): Observable<any> {
 		console.log("******************Entering provider function now******************");
 		let path: string = '';
 
@@ -151,7 +151,7 @@ export class CustomerProvider {
 			path = this.fullBaseUrl;
 		}
 		let updateCustomerReq = {
-			"customer": customerToUpdate
+			"customerEntity": customerToUpdate
 		};
 
 		return this.httpClient.post<any>(path + "/changePassword", updateCustomerReq, httpOptions).pipe

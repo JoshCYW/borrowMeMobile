@@ -1,4 +1,4 @@
-export class Customer {
+export class CustomerEntity {
 	contactNo: String;
 	customerId: number;
 	customerType: string;
