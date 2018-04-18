@@ -17,36 +17,34 @@ export class FrontPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad()
-  {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
 
-    if(sessionStorage.getItem("isLogin") === "true")
-    {
-      console.log("there is a user logged in and his name is " + sessionStorage.getItem("firstName") );
+    if (sessionStorage.getItem("isLogin") === "true") {
+      console.log("there is a user logged in and his name is " + sessionStorage.getItem("firstName"));
     }
-    else{
+    else {
       console.log("No user is currently logged in.");
     }
-    $(document).ready(function () {
-        var imageFile = ["home.png"];
-        var currentIndex = 0;
-        setInterval(function () {
-            if (currentIndex == imageFile.length) {
-                currentIndex = 0;
-            }
-            $(".slides").css('background-image', 'url("/assets/imgs/' + imageFile[currentIndex++] + '")');
-        }, 3000);
-    });
+    // $(document).ready(function () {
+    //   var imageFile = ["homebackground.jpg"];
+    //   var currentIndex = 0;
+    //   setInterval(function () {
+    //     if (currentIndex == imageFile.length) {
+    //       currentIndex = 0;
+    //     }
+    //     $(".slides").css('background-image', 'url("/images/homebackground.jpg")');
+    //   }, 3000);
+    // });
   }
 
-  doLogin(){
+  doLogin() {
     this.navCtrl.push(LoginPage);
   }
-  doSignup(){
+  doSignup() {
     this.navCtrl.push(SignupPage);
   }
-  updateProfile(){
+  updateProfile() {
     this.navCtrl.push(ProfileUpdatePage);
   }
 }

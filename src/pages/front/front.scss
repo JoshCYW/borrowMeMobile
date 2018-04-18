@@ -18,7 +18,8 @@ page-front {
         width: 100%;
         -webkit-transition: background-image 0.5s ease-in-out;
         transition: background-image 0.5s ease-in-out;
-        background-size: 100% 100%;
+        background-size: cover;
+        background-image: url("../assets/imgs/homebackground.jpg");
       }
     
       //****************Button styling******************************
