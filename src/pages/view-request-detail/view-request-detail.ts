@@ -4,6 +4,8 @@ import { Request } from '../../entities/request';
 import { ListingProvider } from '../../providers/listing/listing';
 import { RequestProvider } from '../../providers/request/request';
 import { ProfilePage } from '../profile/profile';
+import { PaymentProvider } from '../../providers/payment/payment';
+import { OffersMadePage } from '../offers-made/offers-made';
 
 /**
  * Generated class for the ViewRequestDetailPage page.
@@ -20,33 +22,35 @@ import { ProfilePage } from '../profile/profile';
 export class ViewRequestDetailPage {
 
   errorMessage: string;
-  request : Request;
-  status: boolean;
+  request: Request;
+  custId: number;
+  checkCustId: number;
+  isAccepted: boolean;
+  isPayment: boolean;
+  payment: number;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public listingProvider: ListingProvider,
-    public requestProvider: RequestProvider) {
+    public requestProvider: RequestProvider,
+    public paymentProvder: PaymentProvider) {
     this.request = navParams.get('requestToView');
-    this.requestProvider.isLister(sessionStorage.getItem("customerId"), this.request.listingId).subscribe(
-      response =>{
-        this.status = response.status;
-        console.log("****************Status has been set: " + this.status + "*********************")
-      },
-      error =>{
-        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-      }
-    )
-    console.log("****************Testing Listing Title: " + this.request.listingTitle + "******************");
+    this.custId = +sessionStorage.getItem("customerId");
+    this.checkCustId = this.request.customerEntity.customerId;
+    this.isAccepted = this.request.accepted;
+    this.isPayment = this.request.payment;
+    console.log("**************Payment: " + this.isPayment);
+    console.log(this.custId + " " + this.checkCustId);
+    console.log(this.request);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewRequestDetailPage');
   }
 
-  acceptRequest(){
-    this.requestProvider.acceptRequest(this.request.requestId).subscribe(
+  acceptRequest() {
+    this.requestProvider.acceptRequest(this.request.requestEntityId).subscribe(
       response => {
         this.request = response.request;
         console.log("****************Status has been changed: " + this.request.accepted + "*********************");
@@ -57,7 +61,7 @@ export class ViewRequestDetailPage {
           buttons: ['Dismiss']
         });
         alert.present();
-        
+
       },
       error => {
         this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
@@ -66,4 +70,21 @@ export class ViewRequestDetailPage {
     console.log("accepted request");
   }
 
+  makePayment() {
+    this.paymentProvder.makePayment(this.request.requestEntityId).subscribe(
+      response => {
+        this.payment = response.payment.totalAmount;
+        let alert = this.alertCtrl.create({
+          title: "Payment completed!",
+          subTitle: 'A total of {{payment}} has been made.',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+        this.navCtrl.setRoot(OffersMadePage);
+      },
+      error => {
+        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+      }
+    )
+  }
 }

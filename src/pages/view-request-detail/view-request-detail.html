@@ -18,15 +18,26 @@
   <div *ngIf="request != null">
     <ion-list>
       <ion-item>
-        <p>Listing Description: {{request.listingTitle}}</p>
+        <p>Listing Description: {{request.listingEntity.listingTitle}}</p>
         <p>Acknowledged status: {{request.acknowledged}}</p>
         <p>Accepted status: {{request.accepted}}</p>
+        <p>Payment status: {{request.payment}}</p>
         <p>Short message: {{request.message}}</p>
       </ion-item>
     </ion-list>
   </div>
   <!-- display accept button only if status is true -->
-  <div *ngIf="status == false && request.accepted == false">
-    <button (click) = "acceptRequest()" ion-button block>Accept Request</button>
+  <div *ngIf="checkCustId != custId && isAccepted == false">
+    <button (click)="acceptRequest()" ion-button block>Accept Request</button>
+  </div>
+  <div *ngIf="checkCustId == custId && isAccepted == true && isPayment != true">
+    <p style="color:green">Your request has been accepted</p>
+    <button (click)="makePayment()" ion-button block>Make Payment!</button>
+  </div>
+  <div *ngIf="checkCustId == custId && isAccepted == true && isPayment == true">
+    <p style="color:green; text-align: center">You have paid for youe service!</p>
+  </div>
+  <div *ngIf="checkCustId == custId && isAccepted == false">
+    <p style="color:blue; text-align: center">Request has yet to be accepted. Please wait for your lender to get back to you!</p>
   </div>
 </ion-content>

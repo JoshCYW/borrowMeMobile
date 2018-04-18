@@ -34,6 +34,7 @@ import { OffersReceivedPage } from '../pages/offers-received/offers-received';
 import { CreateListingPage } from '../pages/create-listing/create-listing';
 import { FrontPage } from '../pages/front/front';
 import { MocksProvider } from '../providers/mocks/mocks';
+import { PaymentProvider } from '../providers/payment/payment';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { MocksProvider } from '../providers/mocks/mocks';
     FilterProvider,
     CustomerProvider,
     RequestProvider,
-    MocksProvider
+    MocksProvider,
+    PaymentProvider
   ]
 })
 export class AppModule { }

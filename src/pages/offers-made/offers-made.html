@@ -17,7 +17,7 @@
   <ion-list>
     <button ion-item *ngFor="let request of requests" (click)="viewRequestDetails($event, request)">
       <b>Listing title: {{request.listingEntity.listingTitle}}</b>
-      <p>Request Id: {{request.requestId}}</p>  
+      <p>Request Id: {{request.requestEntityId}}</p>  
     </button>
   </ion-list>
 </ion-content>

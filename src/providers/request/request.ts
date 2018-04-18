@@ -120,7 +120,7 @@ export class RequestProvider {
     return this.httpClient.post<any>(path + "/acceptRequest/" + requestId, httpOptions).pipe
       (
       catchError(this.handleError)
-      );
+      );  
   }
 
   private handleError(error: HttpErrorResponse) {
