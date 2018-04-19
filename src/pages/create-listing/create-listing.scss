@@ -1,3 +1,33 @@
 page-create-listing {
+    .make_it_available{
+        font-size: 17px;
+        font-weight: 600;
+    }
 
+    button{
+        width: 100%;
+        height: 40px;
+    }
+
+    ion-label{
+        font-weight: 400;
+    }
+
+    .clear_button{
+        background-color: #2FC7FF;
+        color: white;
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+
+    .clear_button:hover {
+        background-color: #488aff;
+        transition: 0.5s;
+    }
+
+    .create_button{
+        color: white;
+        background-color: #488aff;
+        border-radius: 5px;
+    }
 }

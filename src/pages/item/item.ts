@@ -30,13 +30,14 @@ export class ItemPage {
 		this.listingToView = null;
 		this.listingToViewId = navParams.get('listingToViewId');
 		this.checkCustId = +sessionStorage.getItem("customerId");
+		console.log(this.listingToViewId);
 		console.log("Customer ID (CHECK)" + this.checkCustId)
 		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
 			response => {
 				this.listingToView = response.listing;
 				this.customerId = response.listing.customerEntity.customerId;
-				this.infoMessage = "Listing loaded successfully";
-				console.log(this.listingToView.costPerDay);
+				// this.infoMessage = "Listing loaded successfully";
+				// console.log(this.listingToView.costPerDay);
 				console.log("Customer ID (CustomerId)" + this.customerId)
 			},
 			error => {
@@ -57,32 +58,10 @@ export class ItemPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ItemPage');
-		console.log(this.listingToViewId);
 	}
 
 	ionViewWillEnter() {
-		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
-			response => {
-				this.listingToView = response.listing;
-				this.customerId = response.listing.customerEntity.customerId;
-				this.infoMessage = "Listing loaded successfully";
-				console.log(this.listingToView.costPerDay);
-				console.log("Customer ID (CustomerId)" + this.customerId)
-			},
-			error => {
-				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-			}
-		);
-
-		this.listingProvider.getListings().subscribe(
-			response => {
-				this.listings = response.listings;
-				this.buildArray(this.listings);
-			},
-			error => {
-				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
-			}
-		);
+		console.log('ionViewWillEnter ItemPage');	
 	}
 
 	private buildArray(array) {

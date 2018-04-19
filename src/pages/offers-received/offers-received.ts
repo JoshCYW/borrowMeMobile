@@ -34,15 +34,6 @@ export class OffersReceivedPage {
           let val = this.requests[request];
           console.log(val)
           console.log("************ ListingId: " + val.listingId + "****************");
-          // this.listingProvider.retrieveListingById(val.listingId).subscribe(
-          //   response => {
-          //     val.listingTitle = response.listing.listingTitle;
-          //     console.log("************ Successfully set Listing Title************");
-          //   },
-          //   error => {
-          //     this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-          //   }
-          // )
         }
         console.log("************ Successfully completed RequestReceived Function ****************");
       },
@@ -58,6 +49,22 @@ export class OffersReceivedPage {
   }
 
   viewRequestDetails(event, request) {
+    //execute isOpened function here
+    if(request.isOpened == false){
+      //first time being opened, trigger function
+      console.log("**********First time opening view request details**********");
+      this.requestProvider.openedRequest(request.requestEntityId).subscribe(
+        response => {
+          console.log("**********Got a response from openedRequest function:" + response.request.isOpened + "**********");
+        },
+        error => {
+          this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+        }
+      )
+    }
+    else{
+      console.log("**********Opened before**********")
+    }
     this.navCtrl.push(ViewRequestDetailPage, { "requestToView": request });
   }
 

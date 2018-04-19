@@ -123,6 +123,22 @@ export class RequestProvider {
       );  
   }
 
+  openedRequest(requestId: number): Observable<any> {
+    let path: string = '';
+    
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      path = this.baseUrl;
+    }
+    else {
+      path = this.fullBaseUrl;
+    }
+
+    return this.httpClient.post<any>(path + "/openedRequest/" + requestId, httpOptions).pipe
+      (
+      catchError(this.handleError)
+      );  
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An unknown error has occurred:', error.error.message);

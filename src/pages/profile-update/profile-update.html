@@ -6,16 +6,17 @@
 -->
 <ion-header>
   <ion-navbar color="theme">
-      <ion-title>Edit Profile</ion-title>
+    <ion-title>Edit Profile</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
   <div class="content" *ngIf="customerToUpdate != null">
-    <form #updateProductForm="ngForm" (ngSubmit)="update(updateProductForm)" >
+    <form #updateProductForm="ngForm" (ngSubmit)="update(updateProductForm)">
       <ion-list>
         <ion-item style="border-top: 1px solid lightgrey;" no-lines>
           <ion-label fixed>Username</ion-label>
-          <ion-input type="text" id="username" name="username" [(ngModel)]="customerToUpdate.username" required="true" #username="ngModel"></ion-input>
+          <ion-input type="text" id="username" name="username" [(ngModel)]="customerToUpdate.username" required="true" #username="ngModel" maxlength = "32" minlength = "4"></ion-input>
         </ion-item>
 
         <ion-item style="border-top: 1px solid lightgrey;" no-lines>
@@ -30,19 +31,20 @@
 
         <ion-item style="border-top: 1px solid lightgrey;" no-lines>
           <ion-label fixed>Contact No</ion-label>
-          <ion-input type="number" id="contactNo" name="contactNo" [(ngModel)]="customerToUpdate.contactNo" required="true" #contactNo="ngModel"></ion-input>
+          <ion-input type="number" id="contactNo" name="contactNo" [(ngModel)]="customerToUpdate.contactNo" required="true" maxlength="8" #contactNo="ngModel"></ion-input>
         </ion-item>
 
         <ion-item style="border-top: 1px solid lightgrey;" no-lines>
           <ion-label fixed>NRIC</ion-label>
-          <ion-input type="text" id="identificationNo" name="identificationNo" [(ngModel)]="customerToUpdate.identificationNo" required="true" #identificationNo="ngModel"></ion-input>
+          <ion-input type="text" id="identificationNo" name="identificationNo" [(ngModel)]="customerToUpdate.identificationNo" maxlength="9" required="true"
+            #identificationNo="ngModel"></ion-input>
         </ion-item>
 
         <ion-item no-lines>
-					<button type="submit" class="btn" block>
-						Update
-					</button>
-				</ion-item>
+          <button type="submit" class="btn" block>
+            Update
+          </button>
+        </ion-item>
 
       </ion-list>
     </form>

@@ -1,23 +1,24 @@
 page-signup {
     background-color: white;
  
-    .ion-input{
-      text-align: right;
+    ion-input{
+      font-size: 13px;
     }
- 
  
     //input
     ion-label{
-      font-size: 13px;
+      font-size: 10px;
     }
     //button
-    .submit-button{
+    .button{
       width: 100%;
+    }
+    .submit-button{
       color:white;
       border-radius: 5px;
-      margin: 0 auto;
       height: 35px;
       background-color: #488aff;
+      width: 100%;
     }
  
     .submit-button:hover{

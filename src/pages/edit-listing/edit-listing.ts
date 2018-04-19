@@ -48,6 +48,7 @@ export class EditListingPage {
   }
 
   update(updateListingForm) {
+    console.log(this.listingToUpdate.category)
     if(updateListingForm.valid){
       console.log(this.listingToUpdate.listingId);
       this.listingProvider.updateListing(this.listingToUpdate, sessionStorage.getItem("customerId")).subscribe(

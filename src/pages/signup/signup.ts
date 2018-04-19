@@ -85,7 +85,12 @@ export class SignupPage {
       );
     }
     else {
-
+      let alert = this.alertCtrl.create({
+        title: 'Invalid credentials',
+        subTitle: 'Please ensure you have filled up details accurately',
+        buttons: ['Dismiss']
+      });
+      alert.present();
     }
   }
 }

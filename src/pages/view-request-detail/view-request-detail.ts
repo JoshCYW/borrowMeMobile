@@ -21,6 +21,7 @@ import { OffersMadePage } from '../offers-made/offers-made';
 })
 export class ViewRequestDetailPage {
 
+  displayMessage: string;
   errorMessage: string;
   request: Request;
   custId: number;
@@ -74,9 +75,10 @@ export class ViewRequestDetailPage {
     this.paymentProvder.makePayment(this.request.requestEntityId).subscribe(
       response => {
         this.payment = response.payment.totalAmount;
+        this.displayMessage = "A total of " + this.payment + " has been debited to your account";
         let alert = this.alertCtrl.create({
           title: "Payment completed!",
-          subTitle: 'A total of {{payment}} has been made.',
+          subTitle: this.displayMessage,
           buttons: ['Dismiss']
         });
         alert.present();

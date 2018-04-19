@@ -117,11 +117,11 @@ export class ProfilePage {
   }
 
   offersMade() {
-    this.navCtrl.push(OffersMadePage);
+    this.navCtrl.push(OffersMadePage, {}, { animate: false });
   }
 
   offersReceived(){
-    this.navCtrl.push(OffersReceivedPage);
+    this.navCtrl.push(OffersReceivedPage, {}, { animate: false });
   } 
 
   private buildArray(array) {

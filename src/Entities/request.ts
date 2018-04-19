@@ -13,4 +13,5 @@ export class Request {
   message: string;
   listingId: number;
   listingTitle: string;
+  isOpened: boolean;
 }

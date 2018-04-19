@@ -148,8 +148,8 @@
 			Make Request
 		</button>
 	</div>
-	<div *ngIf="customerId == checkCustId">
-		<button ion-button block icon-start (click)="editListing()">
+	<div *ngIf="customerId == checkCustId" (click)="editListing()">
+		<button ion-button block icon-start>
 			<ion-icon name="add"></ion-icon>
 			Edit listing
 		</button>

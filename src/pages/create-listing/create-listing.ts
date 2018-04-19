@@ -42,6 +42,10 @@ export class CreateListingPage {
 		this.errorMessage = null;
 		this.submitted = false;
 		this.newListing = new Listing();
+		this.newListing.category = "";
+		this.newListing.costPerDay = 0;
+		this.newListing.listingDescription = "";
+		this.newListing.listingTitle = "";
 	}
 
 	ionViewDidLoad() {
@@ -52,7 +56,7 @@ export class CreateListingPage {
 				console.log(this.newListing.customerEntity);
 				console.log("***************Successfully set up customer*******************");
 			},
-			error =>{
+			error => {
 				this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
 			}
 		)
@@ -60,32 +64,43 @@ export class CreateListingPage {
 
 	create(createProductForm: NgForm) {
 		this.submitted = true;
-
-		this.infoMessage = null;
-		this.errorMessage = null;
-		console.log(this.newListing.customerEntity);
-		console.log(this.newListing);
-		if (createProductForm.valid) {
-			console.log(this.newListing);
-			this.listingProvider.createListing(this.newListing).subscribe(
-				response => {
-					let alert = this.alertCtrl.create({
-						title: 'Item listed Successfully',
-						subTitle: 'Congratulations, a new listing has been made!',
-						buttons: ['Dismiss!']
-					});
-					console.log("Listing Id of new Item: " + response.listing.listingId);
-					this.navCtrl.push(ItemPage, { 'listingToViewId': response.listing.listingId });
-					alert.present();
-					this.infoMessage = "New Listing " + response.listing.listingId + " created successfully";
-				},
-				error => {
-					this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-				}
-			);
+		if (this.newListing.costPerDay < 0) {
+			let alert = this.alertCtrl.create({
+				title: 'Invalid Listing information',
+				subTitle: 'Cost/day cannot be less than 0',
+				buttons: ['Dismiss']
+			});
+			this.newListing.costPerDay = 0;
+			alert.present();
 		}
-		else{
-			console.log("form invalid")
+		else {
+			if (createProductForm.valid) {
+				console.log(this.newListing);
+				this.listingProvider.createListing(this.newListing).subscribe(
+					response => {
+						let alert = this.alertCtrl.create({
+							title: 'Item listed Successfully',
+							subTitle: 'Congratulations, a new listing has been made!',
+							buttons: ['Dismiss']
+						});
+						console.log("Listing Id of new Item: " + response.listing.listingId);
+						this.navCtrl.push(ItemPage, { 'listingToViewId': response.listing.listingId });
+						alert.present();
+						this.infoMessage = "New Listing " + response.listing.listingId + " created successfully";
+					},
+					error => {
+						this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+					}
+				);
+			}
+			else {
+				let alert = this.alertCtrl.create({
+					title: 'Invalid Listing information',
+					subTitle: 'Please ensure lisitng information is valid',
+					buttons: ['Dismiss']
+				});
+				alert.present();
+			}
 		}
 	}
 
