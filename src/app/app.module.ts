@@ -35,6 +35,8 @@ import { CreateListingPage } from '../pages/create-listing/create-listing';
 import { FrontPage } from '../pages/front/front';
 import { MocksProvider } from '../providers/mocks/mocks';
 import { PaymentProvider } from '../providers/payment/payment';
+import { FeedbackProvider } from '../providers/feedback/feedback';
+import { FeedbackFormPage } from '../pages/feedback-form/feedback-form';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     RequestFormPage,
     ViewRequestDetailPage,
     EditListingPage,
-    FrontPage
+    FrontPage,
+    FeedbackFormPage
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     RequestFormPage,
     ViewRequestDetailPage,
     EditListingPage,
-    FrontPage
+    FrontPage,
+    FeedbackFormPage
   ],
   providers: [
     StatusBar,
@@ -104,7 +108,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     CustomerProvider,
     RequestProvider,
     MocksProvider,
-    PaymentProvider
+    PaymentProvider,
+    FeedbackProvider
   ]
 })
 export class AppModule { }

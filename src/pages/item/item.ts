@@ -4,6 +4,7 @@ import { ListingProvider } from '../../providers/listing/listing';
 import { Listing } from '../../entities/listing';
 import { EditListingPage } from '../edit-listing/edit-listing';
 import { RequestFormPage } from '../request-form/request-form';
+import { FeedbackFormPage } from '../feedback-form/feedback-form';
 
 
 /**
@@ -94,5 +95,9 @@ export class ItemPage {
 
 	makeRequest() {
 		this.navCtrl.push(RequestFormPage, { 'listingToViewId': this.listingToViewId });
+	}
+
+	giveFeedback() {
+		this.navCtrl.push(FeedbackFormPage, { 'listingToViewId': this.listingToViewId, 'sellerId': this.customerId} )
 	}
 }
