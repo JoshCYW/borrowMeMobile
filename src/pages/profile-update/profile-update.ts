@@ -26,6 +26,7 @@ export class ProfileUpdatePage {
   errorMessage: string;
   infoMessage: string;
   validNRIC: boolean;
+  validContactNo: boolean;
   firstChar: string;
   lastChar: string;
 
@@ -36,7 +37,8 @@ export class ProfileUpdatePage {
     public alertCtrl: AlertController) {
     this.customerToUpdate = null;
     this.submitted = false;
-    this.validNRIC = false;
+    this.validNRIC = true;
+    this.validContactNo = true;
     this.firstChar = "";
     this.lastChar = "";
   }
@@ -81,29 +83,52 @@ export class ProfileUpdatePage {
 
   update(updateCustomer: NgForm) {
     this.submitted = true;
-    this.firstChar = this.customerToUpdate.identificationNo.substr(0,1)
-    this.lastChar = this.customerToUpdate.identificationNo.substr(8,1)
-
-    if (this.firstChar.match(/[a-z]/i) && this.lastChar.match(/[a-z]/i)) {
-      let array = this.customerToUpdate.identificationNo.substr(1, 7).split("");
-      console.log(array);
-      let flagger = true;
-      for (let i in array) {
-        console.log(array[i] + "................")
-        if (typeof array[i] === "string" && !Number.isNaN(Number(array[i]))) {
-        } else { flagger = false }
-        console.log(flagger)
-      }
-      if(!flagger){
-        this.validNRIC = false
+    if(this.customerToUpdate.identificationNo != null){
+      if(this.customerToUpdate.identificationNo.length != 9){
+        this.validNRIC = false;
       }
       else{
-        this.validNRIC = true
+        console.log(this.customerToUpdate.identificationNo + "***************");
+        this.firstChar = this.customerToUpdate.identificationNo.substr(0,1)
+        this.lastChar = this.customerToUpdate.identificationNo.substr(8,1)
+    
+        if (this.firstChar.match(/[a-z]/i) && this.lastChar.match(/[a-z]/i)) {
+          let array = this.customerToUpdate.identificationNo.substr(1, 7).split("");
+          console.log(array);
+          let flagger = true;
+          for (let i in array) {
+            console.log(array[i] + "................")
+            if (typeof array[i] === "string" && !Number.isNaN(Number(array[i]))) {
+            } else { flagger = false }
+            console.log(flagger)
+          }
+          if(!flagger){
+            this.validNRIC = false
+          }
+          else{
+            this.validNRIC = true
+          }
+          flagger = true;
+        }
       }
-      flagger = true;
     }
 
-    if (this.customerToUpdate.username.length >= 4 && (this.customerToUpdate.contactNo.charAt(0) != '0') && this.validNRIC) {
+    if(this.customerToUpdate.contactNo != null ){
+      console.log(this.customerToUpdate.contactNo + "***************")
+      if(this.customerToUpdate.contactNo.length != 8){
+        this.validContactNo = false;
+      }
+      else{
+        if(this.customerToUpdate.contactNo.charAt(0) != '0'){
+          this.validContactNo = true;
+        }
+        else{
+          this.validContactNo = false;
+        }
+      }
+    }
+
+    if (this.customerToUpdate.username.length >= 4 && this.validContactNo && this.validNRIC) {
       this.customerProvider.updateCustomer(this.customerToUpdate).subscribe(
         response => {
           sessionStorage.setItem("firstName", response.customerEntity.firstName);
@@ -132,7 +157,8 @@ export class ProfileUpdatePage {
       });
       alert.present();
     }
-    this.validNRIC = false;
+    this.validNRIC = true;
+    this.validContactNo = true;
   }
 
 }
