@@ -83,6 +83,7 @@ export class ProfilePage {
       this.listingProvider.getListingsByCustomerId(sessionStorage.getItem("customerId")).subscribe(
         response => {
           this.listings = response.listings;
+          console.log(this.listings);
         },
         error => {
           this.errorMessage = "HTTP " + error.status + ": " + error.error.message;

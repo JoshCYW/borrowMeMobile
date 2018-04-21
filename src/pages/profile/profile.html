@@ -16,13 +16,15 @@ Ionic pages and navigation. -->
     <!-- <div class="profile-information"> -->
     <ion-list *ngIf="customerProfile != null">
       <ion-item no-lines>
-        <ion-label fixed>   {{customerProfile.firstName}} {{customerProfile.lastName}}</ion-label>
+        <ion-label fixed> {{customerProfile.firstName}} {{customerProfile.lastName}}</ion-label>
       </ion-item>
     </ion-list>
   </div>
   <div class="options">
     <div class="edit-profile">
-      <button (click)="updateCustomer()" class="edit-profile-btn">Edit Profile</button>
+      <button (click)="updateCustomer()" class="edit-profile-btn">
+        <ion-icon name="person"></ion-icon>
+        Edit Profile</button>
     </div>
     <div class="offers-made">
       <button (click)="offersMade()" class="offers-made-btn">
@@ -46,7 +48,12 @@ Ionic pages and navigation. -->
       <ion-row>
         <ion-col *ngFor="let listing of listings" col-6 (click)="viewListingDetails($event,listing)">
           <div>
-            <img src="assets/imgs/guts.jpg">
+            <div *ngIf="listing.images[0] == './images/noimage.png'">
+              <img src="assets/imgs/noimage.png" style="width:180px; height:180px">
+            </div>
+            <div *ngIf="listing.images[0] != './images/noimage.png'">
+              <img src="{{listing.images[0]}}" style="width:180px; height:180px">
+            </div>
             <div class="name" text-left>{{listing.listingTitle}}</div>
             <div class="name" text-left>${{listing.costPerDay}}</div>
             <div class="name" text-left>{{listing.listingDescription}}</div>
