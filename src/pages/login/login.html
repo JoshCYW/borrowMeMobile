@@ -15,7 +15,7 @@
   <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" >
     <ion-list>
       <ion-item no-lines>
-        <ion-input class="input-text" placeholder="Username or Email address" type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel" clearInput></ion-input>
+        <ion-input class="input-text" placeholder="Username" type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel" clearInput></ion-input>
       </ion-item>
       <ion-item no-lines>
         <ion-input class="input-text" placeholder= "Password" type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32" required="true" #inpassword="ngModel" clearInput></ion-input>

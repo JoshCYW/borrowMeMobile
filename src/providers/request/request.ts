@@ -123,6 +123,22 @@ export class RequestProvider {
       );  
   }
 
+  rejectRequest(requestId: number): Observable<any> {
+    let path: string = '';
+    
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      path = this.baseUrl;
+    }
+    else {
+      path = this.fullBaseUrl;
+    }
+
+    return this.httpClient.post<any>(path + "/rejectRequest/" + requestId, httpOptions).pipe
+      (
+      catchError(this.handleError)
+      );  
+  }
+
   openedRequest(requestId: number): Observable<any> {
     let path: string = '';
     
@@ -137,6 +153,22 @@ export class RequestProvider {
       (
       catchError(this.handleError)
       );  
+  }
+
+  deleteRequest(requestId: number): Observable<any> {
+    let path: string = '';
+    
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      path = this.baseUrl;
+    }
+    else {
+      path = this.fullBaseUrl;
+    }
+
+    return this.httpClient.delete<any>(path + "/deleteRequest/" + requestId).pipe
+      (
+      catchError(this.handleError)
+      ); 
   }
 
   private handleError(error: HttpErrorResponse) {

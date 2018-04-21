@@ -68,8 +68,7 @@ export class LoginPage {
     if (loginForm.valid) {
       this.customerProvider.doLogin(this.username, this.password).subscribe(
         response => {
-          if (response.customerEntity != null) {
-
+          if (response.status != false) {
             this.customer = response.customerEntity;
             //complete log in and send to profile page for now
             sessionStorage.setItem("customer", response.customerEntity);

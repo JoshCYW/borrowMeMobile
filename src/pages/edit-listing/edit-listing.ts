@@ -29,17 +29,17 @@ export class EditListingPage {
     public listingProvider: ListingProvider,
     public requestProvider: RequestProvider,
     public alertCtrl: AlertController) {
-      this.listingToUpdate = navParams.get('listingToView');
-      this.listingToViewId = navParams.get('listingToViewId');
-      console.log(this.listingToViewId);
-      this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
-        response => {
-          this.listingToUpdate = response.listing;
-        },
-        error => {
-          this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-        }
-      )
+    this.listingToUpdate = navParams.get('listingToView');
+    this.listingToViewId = navParams.get('listingToViewId');
+    console.log(this.listingToViewId);
+    this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
+      response => {
+        this.listingToUpdate = response.listing;
+      },
+      error => {
+        this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+      }
+    )
   }
 
   ionViewDidLoad() {
@@ -48,26 +48,44 @@ export class EditListingPage {
   }
 
   update(updateListingForm) {
-    console.log(this.listingToUpdate.category)
-    if(updateListingForm.valid){
-      console.log(this.listingToUpdate.listingId);
-      this.listingProvider.updateListing(this.listingToUpdate, sessionStorage.getItem("customerId")).subscribe(
-        response => {
-          console.log(this.listingToUpdate);
-          console.log("******Successfully executed update*********");
-          this.listingToUpdate = response.listing;
-          let alert = this.alertCtrl.create({
-            title: 'Updated successfully!',
-            subTitle: 'Your listing is all set! You will now be redirected your listing details page',
-            buttons: ['Dismiss']
-          });
-          alert.present();
-          this.navCtrl.setRoot(ItemPage, {"listingToViewId": this.listingToViewId});
-        },
-        error => {
-          this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
-        }
-      )
+    if (this.listingToUpdate.costPerDay < 0) {
+      let alert = this.alertCtrl.create({
+        title: 'Invalid Listing information',
+        subTitle: 'Cost/day cannot be less than 0',
+        buttons: ['Dismiss']
+      });
+      this.listingToUpdate.costPerDay = 0;
+      alert.present();
+    }
+    else {
+      if (updateListingForm.valid) {
+        console.log(this.listingToUpdate.listingId);
+        this.listingProvider.updateListing(this.listingToUpdate, sessionStorage.getItem("customerId")).subscribe(
+          response => {
+            console.log(this.listingToUpdate);
+            console.log("******Successfully executed update*********");
+            this.listingToUpdate = response.listing;
+            let alert = this.alertCtrl.create({
+              title: 'Updated successfully!',
+              subTitle: 'Your listing is all set! You will now be redirected your listing details page',
+              buttons: ['Dismiss']
+            });
+            alert.present();
+            this.navCtrl.setRoot(ItemPage, { "listingToViewId": this.listingToViewId });
+          },
+          error => {
+            this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
+          }
+        )
+      }
+      else {
+        let alert = this.alertCtrl.create({
+          title: 'Invalid Listing information',
+          subTitle: 'Please ensure lisitng information is valid',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      }
     }
   }
 

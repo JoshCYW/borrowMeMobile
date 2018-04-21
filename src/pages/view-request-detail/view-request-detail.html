@@ -27,17 +27,34 @@
     </ion-list>
   </div>
   <!-- display accept button only if status is true -->
-  <div *ngIf="checkCustId != custId && isAccepted == false">
-    <button (click)="acceptRequest()" ion-button block>Accept Request</button>
+  <div *ngIf="checkCustId != custId && isAcknowledged == false">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button (click)="acceptRequest()" style="width:100%" ion-button>Accept</button>
+        </ion-col>
+        <ion-col col-6>
+          <button (click)="rejectRequest()" style="width:100%" ion-button>Reject</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <p stlye="text-align:center; margin: 0 auto;">Please note that accepting this request automatically rejects all other requests which falls in the same time period</p>
+      </ion-row>
+    </ion-grid>
   </div>
   <div *ngIf="checkCustId == custId && isAccepted == true && isPayment != true">
-    <p style="color:green">Your request has been accepted</p>
     <button (click)="makePayment()" ion-button block>Make Payment!</button>
+    <p style="color:green">Your request has been accepted</p>
   </div>
   <div *ngIf="checkCustId == custId && isAccepted == true && isPayment == true">
     <p style="color:green; text-align: center">You have paid for youe service!</p>
   </div>
-  <div *ngIf="checkCustId == custId && isAccepted == false">
-    <p style="color:blue; text-align: center">Request has yet to be accepted. Please wait for your lender to get back to you!</p>
+  <div *ngIf="isAccepted == false && checkCustId == custId && isAcknowledged == false">
+    <button (click)="deleteRequest()" ion-button block>Delete request</button>
+    <p style="color:blue; text-align: center">Lender has not yet acknowledged your request*</p>
+  </div>
+  <div *ngIf="isAccepted == false && checkCustId == custId && isAcknowledged == true">
+    <button (click)="deleteRequest()" ion-button block>Delete request</button>
+    <p style="color:red; text-align: center">Lender has rejected your request*</p>
   </div>
 </ion-content>

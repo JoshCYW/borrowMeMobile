@@ -8,7 +8,7 @@
 
   <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
   <ion-list *ngIf="searchTerm != ''">
-      <ion-item *ngFor="let searchItem of searchItems">
+      <ion-item *ngFor="let searchItem of searchItems"  (click)="viewItem(searchItem.listingId)">
           {{searchItem.listingTitle}}
       </ion-item>
 	</ion-list>
