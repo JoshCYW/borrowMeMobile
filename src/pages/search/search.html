@@ -21,8 +21,12 @@
 		<ion-row>
 			<ion-col *virtualItem="let listing" col-6 (click)="viewItem(listing.listingId)">
 				<div>
-				<!--<img src="{{listing.images[0]}}"> doesnt work -->
-				<img src="assets/imgs/guts.jpg">
+				<div *ngIf="listing.images[0] == './images/noimage.png'">
+					<img src="assets/imgs/noimage.png" style="width:180px; height:180px">
+				</div>
+				<div *ngIf="listing.images[0] != './images/noimage.png'">
+					<img src="{{listing.images[0]}}" style="width:180px; height:180px">
+				</div>
 				<div class="name" text-left>{{listing.listingTitle}}</div>
 				<div class="name" text-left>${{listing.costPerDay}}</div>
 				<div class="name" text-left>{{listing.listingDescription}}</div>

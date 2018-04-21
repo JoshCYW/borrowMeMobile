@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
 import { Feedback } from '../../Entities/Feedback';
+import { NgForm } from '@angular/forms';
 
 /**
  * Generated class for the FeedbackFormPage page.
@@ -27,7 +28,9 @@ export class FeedbackFormPage {
   }
 
   makeFeedback(feedbackForm: NgForm) {
-    if(feedbackForm.valid)
-      this.feedbackProvider.make
+    if(feedbackForm.valid){
+      
+    }
+      // this.feedbackProvider.make
   }
 }

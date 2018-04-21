@@ -7,11 +7,11 @@
 		<button ion-button icon-only class="returnButton" clear="true" (click)="popView()">
 			<ion-icon name="arrow-back"></ion-icon>
 		</button>
-		<ion-slides pager autoplay="2000" class="border-bottom">
-			<ion-slide style="background-image: url('assets/imgs/guts.jpg'); background-position: center center;background-size: cover;"></ion-slide>
-			<ion-slide style="background-image: url('assets/imgs/logo.png'); background-position: center center; background-size: cover;"></ion-slide>
+		<ion-slides pager autoplay="5000" loop="true" speed="3000" class="border-bottom">
+			<ion-slide *ngFor="let slide of slideData">
+				<img src="{{slide}}" />
+			</ion-slide>
 		</ion-slides>
-
 	</div>
 
 	<ion-grid>
@@ -80,7 +80,7 @@
 
 	<div class="Feedback" margin-top>
 		<div>Feedback</div>
-		<button ion-button class="giveFeedback"(click)="giveFeedback()">
+		<button ion-button class="giveFeedback" (click)="giveFeedback()">
 			<ion-icon name="arrow-back"></ion-icon>
 		</button>
 		<ion-list>
@@ -128,7 +128,7 @@
 		<ion-row>
 			<ion-col *ngFor="let listing of listings" col-6 (click)="viewItem(listing.listingId)">
 				<div>
-					<img src="assets/imgs/guts.jpg">
+					<img src="{{listing.images[0]}}">
 					<div class="name" text-left>{{listing.listingTitle}}</div>
 					<div class="name" text-left>${{listing.costPerDay}}</div>
 					<div class="name" text-left>{{listing.listingDescription}}</div>

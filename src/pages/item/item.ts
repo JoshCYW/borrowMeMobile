@@ -24,6 +24,7 @@ export class ItemPage {
 	listingToViewId: number;
 	listingToView: Listing;
 	listings: Listing[];
+	slideData: string[];
 	customerId: number;
 	checkCustId: number;
 
@@ -31,14 +32,20 @@ export class ItemPage {
 		this.listingToView = null;
 		this.listingToViewId = navParams.get('listingToViewId');
 		this.checkCustId = +sessionStorage.getItem("customerId");
+		this.slideData = [];
 		console.log(this.listingToViewId);
 		console.log("Customer ID (CHECK)" + this.checkCustId)
 		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
 			response => {
 				this.listingToView = response.listing;
+				if(this.listingToView.images[0] == "./images/noimage.png"){
+					this.slideData.push("assets/imgs/noimage.png");
+					console.log(this.slideData);
+				}
+				else{
+					this.slideData = this.listingToView.images;
+				}
 				this.customerId = response.listing.customerEntity.customerId;
-				// this.infoMessage = "Listing loaded successfully";
-				// console.log(this.listingToView.costPerDay);
 				console.log("Customer ID (CustomerId)" + this.customerId)
 			},
 			error => {
