@@ -15,9 +15,9 @@ export class FeedbackProvider {
 
   ipAddress = '192.168.137.1';
 	portNo = '8080';
-	fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/BorrowMe-war/Resources/Listing';
+	fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/BorrowMe-war/Resources/feedback';
 	
-	baseUrl = "/api/Listing";
+	baseUrl = "/api/feedback";
 
   constructor(public httpClient: HttpClient, public platform: Platform) {
     console.log('Hello FeedbackProvider Provider');
@@ -43,6 +43,54 @@ export class FeedbackProvider {
       catchError(this.handleError)
     );  
   }
+
+	getFeedbacksByListingId(productId: number): Observable<any> {
+		let path: string = '';
+		
+		if(this.platform.is('core') || this.platform.is('mobileweb')) {
+			path = this.baseUrl;
+		}
+		else {
+			path = this.fullBaseUrl;
+		}
+	
+		return this.httpClient.get<any>(path + "/retrieveByListingId/" + productId).pipe
+		(
+			catchError(this.handleError)
+		);
+  }
+  
+  getFeedbacksByReviewerId(customerId: number): Observable<any> {
+		let path: string = '';
+		
+		if(this.platform.is('core') || this.platform.is('mobileweb')) {
+			path = this.baseUrl;
+		}
+		else {
+			path = this.fullBaseUrl;
+		}
+	
+		return this.httpClient.get<any>(path + "/retrieveReviewer/" + customerId).pipe
+		(
+			catchError(this.handleError)
+		);
+  }
+  
+  getFeedbacksByRevieweeId(customerId: number): Observable<any> {
+		let path: string = '';
+		
+		if(this.platform.is('core') || this.platform.is('mobileweb')) {
+			path = this.baseUrl;
+		}
+		else {
+			path = this.fullBaseUrl;
+		}
+	
+		return this.httpClient.get<any>(path + "/retrieveReviewee/" + customerId).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

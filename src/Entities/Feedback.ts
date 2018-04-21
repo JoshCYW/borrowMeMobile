@@ -8,5 +8,5 @@ export class Feedback {
     request: Request;
     reviewer: CustomerEntity;
     reviewee: CustomerEntity;
-    listing: Listing;
+    listing: Listing;  
 }

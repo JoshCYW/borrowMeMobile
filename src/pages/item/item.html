@@ -78,50 +78,34 @@
 		-->
 	</div>
 
-	<div class="Feedback" margin-top>
-		<div>Feedback</div>
-		<button ion-button class="giveFeedback"(click)="giveFeedback()">
-			<ion-icon name="arrow-back"></ion-icon>
-		</button>
-		<ion-list>
-			<!--when i can actually call webservice<ion-item *ngFor="let review of item.reviews" text-wrap> -->
+	<div class ="Feedback" margin-top>
+		<div>
+			Feedback                            
+			<button ion-button float-right class="giveFeedback"(click)="giveFeedback()">
+				<ion-icon name="add"></ion-icon>
+				Leave feedback
+			</button>
+		</div>  
+		<ion-list *ngFor="let feedback of feedbacks">
 			<ion-item>
 				<ion-avatar item-left>
 					<img src='assets/imgs/guts.jpg'>
 				</ion-avatar>
-
-				<div>
 					<div>
-						<span>Username</span>
-						<div></div>
-					</div>
-					<div>
-						<span>Rating:</span>
-					</div>
-					<p>
-						Filler feeeeeeeeeedback
-					</p>
-				</div>
-			</ion-item>
-			<ion-item>
-				<ion-avatar item-left>
-					<img src='assets/imgs/guts.jpg'>
-				</ion-avatar>
-
-				<div>
-					<div>
-						<span>Username</span>
-						<div></div>
-					</div>
-					<div>
-						<span>Rating:</span>
-					</div>
-					<p>
-						Filler feeeeeeeeeedback
-					</p>
-				</div>
+						<div>
+							<span>{{ feedback.reviewer.username }}</span>
+							<div></div>
+						</div>
+						<div>
+							<span>Rating: {{feedback.rating }}</span>
+						</div>
+						<p>
+							{{ feedback.review }}
+						</p>
+					</div>				
 			</ion-item>
 		</ion-list>
+
 	</div>
 
 	<ion-grid *ngIf="listings!= null">
@@ -144,7 +128,6 @@
 </div>
 
 <ion-footer>
-	<!-- check if lister is accessing his own listing -->
 	<div *ngIf="customerId != checkCustId" (click)="makeRequest()">
 		<button ion-button block icon-start>
 			<ion-icon name="heart"></ion-icon>

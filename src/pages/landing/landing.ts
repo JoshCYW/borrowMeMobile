@@ -62,9 +62,8 @@ export class LandingPage {
 	}
 
 	viewItem(listingId) {
-		this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });
+			this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });			
 	}
-
 
 	filterItems(searchTerm) {
 		return this.listings.filter((listing) => {

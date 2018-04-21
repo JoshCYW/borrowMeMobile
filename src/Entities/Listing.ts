@@ -5,7 +5,7 @@ export class Listing {
 	category: string;
 	costPerDay: number;
 	customerEntity: CustomerEntity;
-	feedbacksOnListing: Feedback
+	//feedbacksOnListing: Feedback
 	images: string[];
 	listingAvailable: Boolean;
 	listingDescription: string;

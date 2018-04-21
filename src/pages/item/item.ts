@@ -5,6 +5,8 @@ import { Listing } from '../../entities/listing';
 import { EditListingPage } from '../edit-listing/edit-listing';
 import { RequestFormPage } from '../request-form/request-form';
 import { FeedbackFormPage } from '../feedback-form/feedback-form';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
+import { Feedback } from '../../Entities/Feedback';
 
 
 /**
@@ -26,8 +28,9 @@ export class ItemPage {
 	listings: Listing[];
 	customerId: number;
 	checkCustId: number;
+	feedbacks: Feedback[];
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider, public feedbackProvider: FeedbackProvider) {
 		this.listingToView = null;
 		this.listingToViewId = navParams.get('listingToViewId');
 		this.checkCustId = +sessionStorage.getItem("customerId");
@@ -62,7 +65,15 @@ export class ItemPage {
 	}
 
 	ionViewWillEnter() {
-		console.log('ionViewWillEnter ItemPage');	
+		console.log('ionViewWillEnter ItemPage');
+		this.feedbackProvider.getFeedbacksByRevieweeId(this.customerId).subscribe(
+			response => {
+				this.feedbacks = response.feedbacks;
+			},
+			error => {
+				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+			}			
+		);	
 	}
 
 	private buildArray(array) {
