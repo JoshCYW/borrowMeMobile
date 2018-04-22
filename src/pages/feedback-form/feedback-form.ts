@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
-import { Feedback } from '../../Entities/Feedback';
+import { Feedback } from '../../entities/Feedback';
 import { NgForm } from '@angular/forms';
 
 /**

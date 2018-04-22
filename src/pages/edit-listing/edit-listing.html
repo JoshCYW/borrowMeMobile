@@ -37,23 +37,12 @@
           <ion-select id="category" name="category" [(ngModel)]="listingToUpdate.category" required="true" #category="ngModel">
             <ion-option value="SPORTS">Sports</ion-option>
             <ion-option value="ADVENTURE">Adventure</ion-option>
+            <ion-option value="ELECTRONICS">Electronics</ion-option>
+            <ion-option value="VEHICLES">Vehicles</ion-option>
+            <ion-option value="PARTY">Party</ion-option>
+            <ion-option value="OTHERS">Others</ion-option>
           </ion-select>
         </ion-item>
-        <ion-list name="availability" id="availability" radio-group [(ngModel)]="listingToUpdate.listingAvailable" #availability="ngModel">
-          <ion-list-header>
-            List item publicly?
-          </ion-list-header>
-
-          <ion-item>
-            <ion-label>Yes</ion-label>
-            <ion-radio checked="true" value="true"></ion-radio>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>No</ion-label>
-            <ion-radio value="false"></ion-radio>
-          </ion-item>
-        </ion-list>
       </ion-list>
       <ion-item no-lines>
         <button type="submit" class="btn" block>

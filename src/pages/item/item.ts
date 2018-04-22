@@ -6,7 +6,7 @@ import { EditListingPage } from '../edit-listing/edit-listing';
 import { RequestFormPage } from '../request-form/request-form';
 import { FeedbackFormPage } from '../feedback-form/feedback-form';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
-import { Feedback } from '../../Entities/Feedback';
+import { Feedback } from '../../entities/Feedback';
 import { ProfilePage } from '../profile/profile';
 import { ViewProfilePage } from '../view-profile/view-profile';
 

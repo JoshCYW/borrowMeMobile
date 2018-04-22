@@ -43,7 +43,12 @@
 			<ion-list-header>More about the Seller</ion-list-header>
 			<ion-item (click)="viewProfile(listingToView.customerEntity.customerId, listingToView.customerEntity.username)">
 				<ion-avatar item-left>
-					<img src='assets/imgs/guts.jpg'>
+					<div *ngIf="listingToView != null && listingToView.customerEntity.profileImage == './images/defaultprofilepic.png'">
+						<img src='assets/imgs/noimage.png'>
+					</div>
+					<div *ngIf="listingToView != null && listingToView.customerEntity.profileImage != './images/defaultprofilepic.png'">
+						<img src='{{listingToView.customerEntity.profileImage}}'>
+					</div>
 				</ion-avatar>
 				<div>
 					<div>
@@ -79,7 +84,7 @@
 	</div>
 
 	<div class="Feedback" margin-top>
-		<div>
+		<div *ngIf="listingToView.customerEntity.customerId != checkCustId">
 			<button ion-button class="giveFeedback" (click)="giveFeedback()" block>
 				<ion-icon name="add"></ion-icon>
 				Leave feedback
@@ -88,7 +93,12 @@
 		<ion-list *ngFor="let feedback of feedbacks">
 			<ion-item>
 				<ion-avatar item-left>
-					<img src='assets/imgs/guts.jpg'>
+					<div *ngIf="listingToView != null && listingToView.customerEntity.profileImage == './images/defaultprofilepic.png'">
+						<img src='assets/imgs/noimage.png'>
+					</div>
+					<div *ngIf="listingToView != null && listingToView.customerEntity.profileImage != './images/defaultprofilepic.png'">
+						<img src='{{listingToView.customerEntity.profileImage}}'>
+					</div>
 				</ion-avatar>
 				<div>
 					<div>
@@ -111,7 +121,12 @@
 		<ion-row>
 			<ion-col *ngFor="let listing of listings" col-6 (click)="viewItem(listing.listingId)">
 				<div>
-					<img src="{{listing.images[0]}}">
+					<div *ngIf="listing != null && listing.images[0] == './images/noimage.png'">
+						<img src='assets/imgs/noimage.png'>
+					</div>
+					<div *ngIf="listing != null && listing.images[0] != './images/noimage.png'">
+						<img src='{{listing.images[0]}}'>
+					</div>
 					<div class="name" text-left>{{listing.listingTitle}}</div>
 					<div class="name" text-left>${{listing.costPerDay}}</div>
 					<div class="name" text-left>{{listing.listingDescription}}</div>

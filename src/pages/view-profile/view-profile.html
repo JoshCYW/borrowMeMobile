@@ -23,12 +23,15 @@
   </div>
 
   <div class="personal-listings">
-    <div class="searchbar">
+    <!-- <div class="searchbar">
       <ion-input placeholder="search personal listings"></ion-input>
-    </div>
+    </div> -->
 
     <ion-grid *ngIf="listings!= null">
       <ion-row>
+        <ion-col>
+          <p style="text-align: center">Personal listings</p>
+        </ion-col>
         <ion-col *ngFor="let listing of listings" col-6 (click)="viewListingDetails($event,listing)">
           <div>
             <div *ngIf="listing.images[0] == './images/noimage.png'">
