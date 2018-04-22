@@ -67,8 +67,9 @@ export class LandingPage {
 			this.setFilteredItems();
 
 		});
-
-		this.scrambleArray(this.listings);
+		if(this.listings != null) {
+			this.scrambleArray(this.listings);
+		}
 	}
 
 	viewItem(listingId) {
