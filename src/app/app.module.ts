@@ -37,6 +37,7 @@ import { MocksProvider } from '../providers/mocks/mocks';
 import { PaymentProvider } from '../providers/payment/payment';
 import { FeedbackProvider } from '../providers/feedback/feedback';
 import { FeedbackFormPage } from '../pages/feedback-form/feedback-form';
+import { ViewProfilePage } from '../pages/view-profile/view-profile';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { FeedbackFormPage } from '../pages/feedback-form/feedback-form';
     ViewRequestDetailPage,
     EditListingPage,
     FrontPage,
-    FeedbackFormPage
+    FeedbackFormPage,
+    ViewProfilePage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +99,8 @@ import { FeedbackFormPage } from '../pages/feedback-form/feedback-form';
     ViewRequestDetailPage,
     EditListingPage,
     FrontPage,
-    FeedbackFormPage
+    FeedbackFormPage,
+    ViewProfilePage
   ],
   providers: [
     StatusBar,

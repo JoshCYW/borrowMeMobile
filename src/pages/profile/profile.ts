@@ -34,6 +34,7 @@ export class ProfilePage {
   submitted: boolean;
   errorMessage: string;
   infoMessage: string;
+  tempCustId: number;
 
   customerProfile: CustomerEntity;
   listings: Listing[];
@@ -42,12 +43,18 @@ export class ProfilePage {
     public navParams: NavParams,
     public customerProvider: CustomerProvider,
     public listingProvider: ListingProvider) {
-    //this.customerProfile = null;
+    this.tempCustId = null;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     console.log(sessionStorage.getItem("customerId"));
+
+    if(this.navParams.get('profileToViewId') != null){
+      this.tempCustId = this.navParams.get('profileToViewId');
+      console.log("CUSTOMERID WAS NOT NULL");
+      console.log("Customer ID: " + this.tempCustId);
+    }
 
     if (sessionStorage.getItem("username") !== null) {
 
@@ -104,6 +111,12 @@ export class ProfilePage {
     }
   }
 
+  ionViewWillLeave(){
+    this.tempCustId = null;
+    this.customerProfile = null;
+    this.listings = null;
+  }
+
   viewListingDetails(event, listing) {
     console.log("button pressed");
     this.navCtrl.push(ItemPage, {'listingToViewId': listing.listingId});	
@@ -124,5 +137,9 @@ export class ProfilePage {
   offersReceived(){
     this.navCtrl.push(OffersReceivedPage, {}, { animate: false });
   } 
+
+  popView(){
+    this.navCtrl.pop();
+  }
 
 }

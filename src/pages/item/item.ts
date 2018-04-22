@@ -7,6 +7,8 @@ import { RequestFormPage } from '../request-form/request-form';
 import { FeedbackFormPage } from '../feedback-form/feedback-form';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
 import { Feedback } from '../../Entities/Feedback';
+import { ProfilePage } from '../profile/profile';
+import { ViewProfilePage } from '../view-profile/view-profile';
 
 
 /**
@@ -72,6 +74,7 @@ export class ItemPage {
 		this.feedbackProvider.getFeedbacksByRevieweeId(this.customerId).subscribe(
 			response => {
 				this.feedbacks = response.feedbacks;
+				console.log(this.feedbacks);
 			},
 			error => {
 				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
@@ -106,6 +109,19 @@ export class ItemPage {
 
 	viewItem(listingId) {
 		this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });
+	}
+
+	viewProfile(customerId, customerUsername){
+		if(customerId == sessionStorage.getItem("customerId")){
+			console.log("View personal profile");
+			console.log(customerId + "********************")
+			this.navCtrl.push(ProfilePage, {'profileToViewId': customerId});
+		}
+		else{
+			console.log("View Other profile");
+			console.log(customerUsername + "***************** username")
+			this.navCtrl.push(ViewProfilePage, {'profileToViewId': customerId, 'profileToViewUsername': customerUsername});
+		}
 	}
 
 	popView() {

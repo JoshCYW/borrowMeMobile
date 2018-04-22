@@ -41,7 +41,7 @@
 	<div class="seller-info" margin-top>
 		<ion-list>
 			<ion-list-header>More about the Seller</ion-list-header>
-			<ion-item>
+			<ion-item (click)="viewProfile(listingToView.customerEntity.customerId, listingToView.customerEntity.username)">
 				<ion-avatar item-left>
 					<img src='assets/imgs/guts.jpg'>
 				</ion-avatar>
@@ -78,31 +78,30 @@
 		-->
 	</div>
 
-	<div class ="Feedback" margin-top>
+	<div class="Feedback" margin-top>
 		<div>
-			Feedback                            
-			<button ion-button float-right class="giveFeedback"(click)="giveFeedback()">
+			<button ion-button class="giveFeedback" (click)="giveFeedback()" block>
 				<ion-icon name="add"></ion-icon>
 				Leave feedback
 			</button>
-		</div>  
+		</div>
 		<ion-list *ngFor="let feedback of feedbacks">
 			<ion-item>
 				<ion-avatar item-left>
 					<img src='assets/imgs/guts.jpg'>
 				</ion-avatar>
+				<div>
 					<div>
-						<div>
-							<span>{{ feedback.reviewer.username }}</span>
-							<div></div>
-						</div>
-						<div>
-							<span>Rating: {{feedback.rating }}</span>
-						</div>
-						<p>
-							{{ feedback.review }}
-						</p>
-					</div>				
+						<span>{{ feedback.reviewer.username }}</span>
+						<div></div>
+					</div>
+					<div>
+						<span>Rating: {{feedback.rating }}</span>
+					</div>
+					<p>
+						{{ feedback.review }}
+					</p>
+				</div>
 			</ion-item>
 		</ion-list>
 

@@ -1,19 +1,11 @@
 <ion-header>
-  <div *ngIf="tempCustId == null">
-    <ion-navbar color="theme">
-      <ion-title>Profile</ion-title>
-    </ion-navbar>
-  </div>
-  <div *ngIf="tempCustId != null">
-    <ion-navbar color="theme">
-      <button ion-button icon-only class="returnButton" clear="true" (click)="popView()">
-        <ion-icon name="arrow-back"></ion-icon>
-        <label style="color:white; font-size:18px; font-family: Roboto;">Profile</label>
-      </button>
-    </ion-navbar>
-  </div>
+
 </ion-header>
+
 <ion-content>
+  <button ion-button icon-only class="returnButton" clear="true" (click)="popView()">
+    <ion-icon name="arrow-back"></ion-icon><ion-label>Profile</ion-label>
+  </button>
   <div class="profile" style="padding:7px">
     <div class="profile-img" *ngIf="customerProfile != null && customerProfile.profileImage == './images/defaultprofilepic.png'">
       <img style="border-radius: 50%;" src="assets/imgs/noimage.png">
@@ -29,25 +21,7 @@
       </ion-list>
     </div>
   </div>
-  <div class="options">
-    <div class="edit-profile">
-      <button (click)="updateCustomer()" class="edit-profile-btn">
-        <ion-icon name="person"></ion-icon>
-        Edit Profile</button>
-    </div>
-    <div class="offers-made">
-      <button (click)="offersMade()" class="offers-made-btn">
-        <ion-icon name="cart"></ion-icon> Offers Made</button>
-    </div>
-    <div class="setting">
-      <button (click)="settings()" class="setting-btn">
-        <ion-icon name="settings"></ion-icon> Settings</button>
-    </div>
-    <div class="offers-received">
-      <button (click)="offersReceived()" class="offers-received-btn">
-        <ion-icon name="mail-open"></ion-icon> Offers Received</button>
-    </div>
-  </div>
+
   <div class="personal-listings">
     <div class="searchbar">
       <ion-input placeholder="search personal listings"></ion-input>
