@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>feedback-form</ion-title>
+  <ion-navbar color="theme">
+    <ion-title>Feedback form</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,21 +16,19 @@
 <ion-content padding>
 
   <form #feedbackForm="ngForm" (ngSubmit)="makeFeedback(feedbackForm)">
-      <ion-item no-lines>
-        <ion-label fixed>Rating</ion-label>
-        <ion-input type="number" id="rating" name="rating" [(ngModel)]="newFeedback.rating" required="true" #rating="ngModel"></ion-input>
-      </ion-item>
-      <ion-item no-lines>
-        <ion-label color="" floating>Review</ion-label>
-        <ion-input name="review" id="review" [(ngModel)]="newFeedback.review" #review="ngModel" clearInput></ion-input>
-      </ion-item>
-      <ion-item>
-        <div class="button">
-          <button class="submit-button primary" type="submit" block>
-            Submit Feedback!
-          </button>
-        </div>
-      </ion-item>
+    <ion-item no-lines>
+      <ion-label fixed>Rating</ion-label>
+      <ion-input type="number" id="rating" name="rating" [(ngModel)]="newFeedback.rating" required="true" #rating="ngModel"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label color="" floating>Review</ion-label>
+      <ion-input name="review" id="review" [(ngModel)]="newFeedback.review" #review="ngModel" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <button class="submit-button primary button" type="submit">
+        Submit Feedback!
+      </button>
+    </ion-item>
   </form>
-  
+
 </ion-content>

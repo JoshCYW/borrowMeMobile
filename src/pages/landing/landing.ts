@@ -71,8 +71,11 @@ export class LandingPage {
 		this.scrambleArray(this.listings);
 	}
 
+	ionViewWillLeave() {
+	}
+
 	viewItem(listingId) {
-			this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });			
+		this.navCtrl.push(ItemPage, { 'listingToViewId': listingId });
 	}
 
 	filterItems(searchTerm) {
