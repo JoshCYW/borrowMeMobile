@@ -1,6 +1,9 @@
 import { DateTime } from "ionic-angular";
+import { CustomerEntity } from "./customer";
+import { Listing } from "./Listing";
 
 export class Request {
+  /*
   customerEntity: any;
   requestEntityId: number;
   startDate: DateTime;
@@ -13,5 +16,20 @@ export class Request {
   message: string;
   listingId: number;
   listingTitle: string;
+  isOpened: boolean; */
+
+  accepted: boolean;
+  acknowledged: boolean;
+  borrowerLeftFeedback: boolean;
+  customerEntity: CustomerEntity;
+  endDate: DateTime;
   isOpened: boolean;
+  lenderLeftFeedback: boolean;
+  listingEntity: Listing;
+  message: string;
+  noOfDays: number;
+  payment: false;
+  requestEntityId: number;
+  startDate: DateTime;
 }
+

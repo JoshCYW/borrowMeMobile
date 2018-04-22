@@ -9,4 +9,5 @@ export class Feedback {
     reviewer: CustomerEntity;
     reviewee: CustomerEntity;
     listing: Listing;  
+    
 }

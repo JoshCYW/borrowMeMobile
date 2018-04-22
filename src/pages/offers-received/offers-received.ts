@@ -33,7 +33,7 @@ export class OffersReceivedPage {
         for (let request in this.requests) {
           let val = this.requests[request];
           console.log(val)
-          console.log("************ ListingId: " + val.listingId + "****************");
+          console.log("************ ListingId: " + val.listingEntity.listingId + "****************");
         }
         console.log("************ Successfully completed RequestReceived Function ****************");
       },

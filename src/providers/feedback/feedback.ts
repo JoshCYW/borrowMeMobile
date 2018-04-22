@@ -24,8 +24,8 @@ export class FeedbackProvider {
   }
 
   createFeedback(newFeedback: Feedback, reviewerId: string, revieweeId: string, listingId: String): Observable<any> {
-    let path: string = '';
-      
+		let path: string = '';
+		
     if(this.platform.is('core') || this.platform.is('mobileweb')) {
       path = this.baseUrl;
     }

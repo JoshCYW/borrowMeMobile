@@ -27,9 +27,8 @@ export class LandingPage {
 	searchItems: any;
 	searchTerm: string = '';
 	searchControl: FormControl;
-	mockListings: String[];
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider, public mockProvider: MocksProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public listingProvider: ListingProvider) {
 		this.categories = ['Party', 'Electronics', 'Sports'];
 		this.categories2 = ['Vehicles', 'Others'];
 		this.searchControl = new FormControl();
@@ -38,6 +37,19 @@ export class LandingPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad LandingPage');
+		this.listingProvider.getListings().subscribe(
+			response => {
+				this.listings = response.listings;
+			},
+			error => {
+				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+			}
+		);
+		this.searchControl.valueChanges.debounceTime(300).subscribe(search => {
+
+			this.setFilteredItems();
+
+		});
 	}
 
 	ionViewWillEnter() {
@@ -56,9 +68,7 @@ export class LandingPage {
 
 		});
 
-		this.mockListings = this.mockProvider.getListingPhotos();
-		console.log(this.mockListings[0]);
-		this.buildArray(this.mockListings);
+		this.scrambleArray(this.listings);
 	}
 
 	viewItem(listingId) {
@@ -70,24 +80,16 @@ export class LandingPage {
 			return listing.listingTitle.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
 		});
 	}
-	/*
-		goToSearch($event) {
-			let target = this.listings.filter(listing => listing.listingTitle === '$event');
-			this.viewItem(target.listingId);
-		}
-	*/
+
 	setFilteredItems() {
 		this.searchItems = this.filterItems(this.searchTerm);
 	}
 
-	buildArray(array) {
+	scrambleArray(array) {
 		return new Promise(resolve => {
 			let length = array.length, j, i;
-			// While there remain elements to shuffle…
 			while (length) {
-				// Pick a remaining element…
 				i = Math.floor(Math.random() * length--);
-				// And swap it with the current element.
 				j = array[length];
 				array[length] = array[i];
 				array[i] = j;

@@ -59,7 +59,7 @@ export class ItemPage {
 		this.listingProvider.getListings().subscribe(
 			response => {
 				this.listings = response.listings;
-				this.buildArray(this.listings);
+				this.scrambleArray(this.listings);
 			},
 			error => {
 				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
@@ -69,6 +69,14 @@ export class ItemPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ItemPage');
+		this.feedbackProvider.getFeedbacksByRevieweeId(this.customerId).subscribe(
+			response => {
+				this.feedbacks = response.feedbacks;
+			},
+			error => {
+				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+			}			
+		);	
 	}
 
 	ionViewWillEnter() {
@@ -83,14 +91,11 @@ export class ItemPage {
 		);	
 	}
 
-	private buildArray(array) {
+	scrambleArray(array) {
 		return new Promise(resolve => {
 			let length = array.length, j, i;
-			// While there remain elements to shuffle…
 			while (length) {
-				// Pick a remaining element…
 				i = Math.floor(Math.random() * length--);
-				// And swap it with the current element.
 				j = array[length];
 				array[length] = array[i];
 				array[i] = j;

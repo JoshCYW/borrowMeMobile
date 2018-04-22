@@ -125,19 +125,4 @@ export class ProfilePage {
     this.navCtrl.push(OffersReceivedPage, {}, { animate: false });
   } 
 
-  private buildArray(array) {
-		return new Promise(resolve => {
-			let length = array.length, j, i;
-			// While there remain elements to shuffle…
-			while (length) {
-				// Pick a remaining element…
-				i = Math.floor(Math.random() * length--);
-				// And swap it with the current element.
-				j = array[length];
-				array[length] = array[i];
-				array[i] = j;
-			}
-			resolve(true);
-		});
-	}
 }
