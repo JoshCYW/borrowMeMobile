@@ -84,12 +84,13 @@
 	</div>
 
 	<div class="Feedback" margin-top>
-		<div *ngIf="listingToView.customerEntity.customerId != checkCustId">
+		<div *ngIf="listingToView.customerEntity.customerId != checkCustId && showFeedbackButton">
 			<button ion-button class="giveFeedback" (click)="giveFeedback()" block>
 				<ion-icon name="add"></ion-icon>
 				Leave feedback
 			</button>
 		</div>
+		<p>Feedback</p>
 		<ion-list *ngFor="let feedback of feedbacks">
 			<ion-item>
 				<ion-avatar item-left>

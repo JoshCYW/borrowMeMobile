@@ -38,6 +38,7 @@ export class FeedbackFormPage {
             buttons: ['Dismiss']
           });
           alert.present();
+          this.navCtrl.pop();
         },
         error => {
           let alert = this.alertCtrl.create ({
