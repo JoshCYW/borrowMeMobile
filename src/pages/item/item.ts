@@ -49,6 +49,10 @@ export class ItemPage {
 		this.listingToViewId = navParams.get('listingToViewId');
 		this.checkCustId = +sessionStorage.getItem("customerId");
 		this.slideData = [];
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad ItemPage');
 		console.log(this.listingToViewId);
 		console.log("Customer ID (CHECK)" + this.checkCustId)
 		this.listingProvider.getListingByListingId(this.listingToViewId).subscribe(
@@ -78,10 +82,6 @@ export class ItemPage {
 				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
 			}
 		);
-	}
-
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad ItemPage');
 		this.feedbackProvider.getFeedbacksByRevieweeId(this.listingToViewId).subscribe(
 			response => {
 				this.feedbacks = response.feedbacks;
@@ -117,15 +117,15 @@ export class ItemPage {
 	}
 
 	ionViewWillEnter() {
-		console.log('ionViewWillEnter ItemPage');
-		this.feedbackProvider.getFeedbacksByRevieweeId(this.customerId).subscribe(
-			response => {
-				this.feedbacks = response.feedbacks;
-			},
-			error => {
-				this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
-			}
-		);
+		// console.log('ionViewWillEnter ItemPage');
+		// this.feedbackProvider.getFeedbacksByRevieweeId(this.customerId).subscribe(
+		// 	response => {
+		// 		this.feedbacks = response.feedbacks;
+		// 	},
+		// 	error => {
+		// 		this.errorMessage = "HTTP" + error.status + ": " + error.error.message;
+		// 	}
+		// );
 	}
 
 	ionViewWillLeave() {
