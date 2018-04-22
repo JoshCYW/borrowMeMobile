@@ -105,7 +105,7 @@ export class ChangePasswordPage {
   }
 
   popThis() {
-    this.navCtrl.setRoot(SettingsPage, {}, { animate: false });
+    this.navCtrl.pop();
   }
 
 }

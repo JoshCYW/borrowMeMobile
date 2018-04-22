@@ -26,6 +26,12 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
+    // let tabs = document.querySelectorAll('.show-tabbar');
+    // if (tabs === null) {
+    //     Object.keys(tabs).map((key) => {
+    //         tabs[key].style.display = 'flex';
+    //     });
+    // }
     console.log('ionViewDidLoad SettingsPage');
   }
 

@@ -20,18 +20,31 @@ export class HowToBorrowPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToBorrowPage');
-  } 
+  }
 
-  ngAfterViewInit() {
-    let tabs = document.querySelectorAll('.show-tabbar');
+  ionViewWillEnter() {
+    let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
-        Object.keys(tabs).map((key) => {
-            tabs[key].style.display = 'none';
-        });
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.transform = 'translateY(56px)';
+      });
     }
   }
 
-  goBack(){
+  ngAfterViewInit() {
+
+  }
+
+  ionViewDidLeave() {
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.transform = 'translateY(0)';
+      });
+    }
+  }
+
+  goBack() {
     this.navCtrl.pop();
   }
 
